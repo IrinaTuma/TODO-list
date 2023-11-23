@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net" modified="2023-11-23T07:17:29.999Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="ktO0AzteFPvCjdf3rMRc" version="22.1.3" type="device">
+  <diagram name="Sivu-1" id="7szdPF4piGkqOV5qhPgT">
+    <mxGraphModel dx="1103" dy="601" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-2" target="H8HSqleEgmg3GEgGwWFS-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-2" value="TODO list" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-3" target="H8HSqleEgmg3GEgGwWFS-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-3" value="Kirjoita sinun tehtäväsi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="352.5" y="140" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-5" target="H8HSqleEgmg3GEgGwWFS-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-5" target="H8HSqleEgmg3GEgGwWFS-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="435" y="340" />
+              <mxPoint x="352" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-5" target="H8HSqleEgmg3GEgGwWFS-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-5" target="H8HSqleEgmg3GEgGwWFS-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-5" value="Valitse minkälainen&lt;br&gt;sinun tehtävä on" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="342.5" y="240" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-7" target="H8HSqleEgmg3GEgGwWFS-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-7" value="Tärkeät ja kiirelliset" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-8" target="H8HSqleEgmg3GEgGwWFS-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-8" value="Tärkeät ja ei kiirelliset" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="270" y="360" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-9" target="H8HSqleEgmg3GEgGwWFS-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-9" value="Kiirelliset ja ei tärkeät" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="447.5" y="360" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-10" target="H8HSqleEgmg3GEgGwWFS-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-10" value="ei kiirelliset ja ei tärkeät" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="630" y="360" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-29" target="H8HSqleEgmg3GEgGwWFS-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-29" value="Valitse määräpäivä" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="652.5" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-31" target="H8HSqleEgmg3GEgGwWFS-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-31" value="Valitse määräpäivä" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="470" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-32" target="H8HSqleEgmg3GEgGwWFS-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-32" value="Valitse määräpäivä" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="292.5" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-33" target="H8HSqleEgmg3GEgGwWFS-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-33" value="Valitse määräpäivä" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="102.5" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-40" target="H8HSqleEgmg3GEgGwWFS-50">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="163" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-40" value="Tehtävä lisätään tärkeisiin ja kiirellisiin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="83.75" y="570" width="157.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-41" target="H8HSqleEgmg3GEgGwWFS-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-41" value="Tehtävä lisätään tärkeisiin ja ei kiirellisiin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="273.75" y="570" width="157.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-44" target="H8HSqleEgmg3GEgGwWFS-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-44" value="Tehtävä lisätään kiirellisiin ja ei tärkeisiin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="451.25" y="570" width="157.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="H8HSqleEgmg3GEgGwWFS-45" target="H8HSqleEgmg3GEgGwWFS-50">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="713" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-45" value="Tehtävä lisätään ei kiirellisiin ja ei tärkeisiin" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="633.75" y="570" width="157.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="H8HSqleEgmg3GEgGwWFS-50" value="Loppu" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="340" y="680" width="190" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
