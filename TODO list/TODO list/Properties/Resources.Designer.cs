@@ -66,6 +66,8 @@ namespace TODO_list.Properties
             {
                 resourceCulture = value;
             }
-        }
+
+
     }
+}
 }
