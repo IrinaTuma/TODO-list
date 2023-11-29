@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lbUrgent = new System.Windows.Forms.Label();
             this.lbImportant = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbNotUrgent = new System.Windows.Forms.Label();
             this.lbNotImportant = new System.Windows.Forms.Label();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.lbTitle = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.dataGridImportantUrgent = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridImportantUrgent)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Location = new System.Drawing.Point(18, 32);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(776, 32);
+            this.label1.Size = new System.Drawing.Size(1164, 49);
             this.label1.TabIndex = 0;
             this.label1.Text = "Eisenhowerin Matriisi (Tehtävien lista)";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -49,9 +62,10 @@
             // 
             this.lbUrgent.BackColor = System.Drawing.Color.Transparent;
             this.lbUrgent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUrgent.Location = new System.Drawing.Point(173, 97);
+            this.lbUrgent.Location = new System.Drawing.Point(260, 149);
+            this.lbUrgent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUrgent.Name = "lbUrgent";
-            this.lbUrgent.Size = new System.Drawing.Size(190, 32);
+            this.lbUrgent.Size = new System.Drawing.Size(285, 49);
             this.lbUrgent.TabIndex = 1;
             this.lbUrgent.Text = "kiirellistä";
             this.lbUrgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,50 +74,173 @@
             // 
             this.lbImportant.BackColor = System.Drawing.Color.Transparent;
             this.lbImportant.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImportant.Location = new System.Drawing.Point(115, 97);
+            this.lbImportant.Location = new System.Drawing.Point(172, 149);
+            this.lbImportant.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbImportant.Name = "lbImportant";
-            this.lbImportant.Size = new System.Drawing.Size(72, 175);
+            this.lbImportant.Size = new System.Drawing.Size(108, 269);
             this.lbImportant.TabIndex = 2;
             this.lbImportant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbImportant.Paint += new System.Windows.Forms.PaintEventHandler(this.lbImportant_Paint);
             // 
-            // label2
+            // lbNotUrgent
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(412, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 32);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "ei kiirellistä";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbNotUrgent.BackColor = System.Drawing.Color.Transparent;
+            this.lbNotUrgent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNotUrgent.Location = new System.Drawing.Point(618, 149);
+            this.lbNotUrgent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbNotUrgent.Name = "lbNotUrgent";
+            this.lbNotUrgent.Size = new System.Drawing.Size(285, 49);
+            this.lbNotUrgent.TabIndex = 3;
+            this.lbNotUrgent.Text = "ei kiirellistä";
+            this.lbNotUrgent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbNotImportant
             // 
             this.lbNotImportant.BackColor = System.Drawing.Color.Transparent;
             this.lbNotImportant.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNotImportant.Location = new System.Drawing.Point(115, 302);
+            this.lbNotImportant.Location = new System.Drawing.Point(172, 465);
+            this.lbNotImportant.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNotImportant.Name = "lbNotImportant";
-            this.lbNotImportant.Size = new System.Drawing.Size(72, 178);
+            this.lbNotImportant.Size = new System.Drawing.Size(108, 274);
             this.lbNotImportant.TabIndex = 4;
             this.lbNotImportant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbNotImportant.Paint += new System.Windows.Forms.PaintEventHandler(this.lbNotImportant_Paint);
             // 
+            // textBoxTitle
+            // 
+            this.textBoxTitle.Location = new System.Drawing.Point(267, 611);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(312, 26);
+            this.textBoxTitle.TabIndex = 5;
+            // 
+            // lbTitle
+            // 
+            this.lbTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.Location = new System.Drawing.Point(269, 558);
+            this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(297, 50);
+            this.lbTitle.TabIndex = 8;
+            this.lbTitle.Text = "otsikko";
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEdit.Location = new System.Drawing.Point(799, 597);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(152, 49);
+            this.btnEdit.TabIndex = 10;
+            this.btnEdit.Text = "muokata";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.Transparent;
+            this.btnDelete.Location = new System.Drawing.Point(975, 597);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(152, 49);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "poistaa";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSave.Location = new System.Drawing.Point(625, 597);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(152, 49);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "tallentaa";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // dataGridImportantUrgent
+            // 
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridImportantUrgent.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            this.dataGridImportantUrgent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridImportantUrgent.BackgroundColor = System.Drawing.Color.DarkCyan;
+            this.dataGridImportantUrgent.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridImportantUrgent.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridImportantUrgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridImportantUrgent.ColumnHeadersVisible = false;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridImportantUrgent.DefaultCellStyle = dataGridViewCellStyle33;
+            this.dataGridImportantUrgent.GridColor = System.Drawing.Color.White;
+            this.dataGridImportantUrgent.Location = new System.Drawing.Point(337, 221);
+            this.dataGridImportantUrgent.Name = "dataGridImportantUrgent";
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridImportantUrgent.RowHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            this.dataGridImportantUrgent.RowHeadersVisible = false;
+            this.dataGridImportantUrgent.RowHeadersWidth = 62;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridImportantUrgent.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            this.dataGridImportantUrgent.RowTemplate.Height = 28;
+            this.dataGridImportantUrgent.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridImportantUrgent.Size = new System.Drawing.Size(242, 236);
+            this.dataGridImportantUrgent.TabIndex = 13;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.ClientSize = new System.Drawing.Size(1200, 886);
+            this.Controls.Add(this.dataGridImportantUrgent);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.lbTitle);
+            this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.lbImportant);
             this.Controls.Add(this.lbNotImportant);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbNotUrgent);
             this.Controls.Add(this.lbUrgent);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "ToDo list";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridImportantUrgent)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -114,8 +251,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbUrgent;
         private System.Windows.Forms.Label lbImportant;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbNotUrgent;
         private System.Windows.Forms.Label lbNotImportant;
+        private System.Windows.Forms.TextBox textBoxTitle;
+        private System.Windows.Forms.Label lbTitle;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dataGridImportantUrgent;
     }
 }
 

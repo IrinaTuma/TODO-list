@@ -17,10 +17,31 @@ namespace TODO_list
             InitializeComponent();
         }
 
+
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+
+         private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         //This function writes vertical text for label lbImportant "tärkeä" 
         private void lbImportant_Paint(object sender, PaintEventArgs e)
@@ -43,5 +64,7 @@ namespace TODO_list
             e.Graphics.RotateTransform(-90);
             e.Graphics.DrawString("ei tärkeää", myfont, myBrush, 0, 0);
         }
+
+
     }
 }
