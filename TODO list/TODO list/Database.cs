@@ -11,7 +11,7 @@ namespace TODO_list
 {
     class Database
     {
-        protected OleDbConnection conn = null;
+        /*protected OleDbConnection conn = null;
 
         public Database(string connectionString)
         {
@@ -117,6 +117,7 @@ namespace TODO_list
             }
             return dataset;
         }
+        */
 
     }
 }

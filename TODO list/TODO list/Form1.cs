@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+
+
 
 namespace TODO_list
 {
@@ -15,6 +18,10 @@ namespace TODO_list
         public Form1()
         {
             InitializeComponent();
+
+            DatabaseLoad();
+
+
         }
 
 
@@ -25,14 +32,14 @@ namespace TODO_list
 
         }
 
-         private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
 
         }
-        
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
- 
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -65,6 +72,38 @@ namespace TODO_list
             e.Graphics.DrawString("ei tärkeää", myfont, myBrush, 0, 0);
         }
 
+
+        //Functio: Load Database
+        private void DatabaseLoad()
+        {
+            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
+            OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
+
+            //Running a database query
+            dbConnection.Open(); //Open connection
+
+            string query = "SELECT * FROM base1"; //srting of query
+            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //comand
+            OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
+
+
+            //Check data
+            if (dbReader.HasRows == false)
+            {
+                MessageBox.Show("Data wasn,t found!", "Mistake");
+            }
+            else
+            {
+                //Write data to the form's table
+                while (dbReader.Read())
+                {
+                    dataGridImportantUrgent.Rows.Add(dbReader["id"], dbReader["Title"]);
+                }
+
+            }
+
+
+        }
 
     }
 }

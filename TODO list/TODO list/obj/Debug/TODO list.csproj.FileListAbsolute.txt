@@ -18,3 +18,13 @@ C:\Users\s3tuir00\source\repos\TODO-list\TODO list\TODO list\obj\Debug\TODO list
 C:\Users\s3tuir00\source\repos\TODO-list\TODO list\TODO list\obj\Debug\TODO list.csproj.CoreCompileInputs.cache
 C:\Users\s3tuir00\source\repos\TODO-list\TODO list\TODO list\obj\Debug\TODO list.exe
 C:\Users\s3tuir00\source\repos\TODO-list\TODO list\TODO list\obj\Debug\TODO list.pdb
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\bin\Debug\TODO list.exe.config
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\bin\Debug\TODO list.exe
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\bin\Debug\TODO list.pdb
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO list.csproj.AssemblyReference.cache
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO_list.Form1.resources
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO_list.Properties.Resources.resources
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO list.csproj.GenerateResource.cache
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO list.csproj.CoreCompileInputs.cache
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO list.exe
+C:\Users\s3tuir00\source\repos\TODO-list 30.11\TODO-list\TODO list\TODO list\obj\Debug\TODO list.pdb
