@@ -19,28 +19,68 @@ namespace TODO_list
         {
             InitializeComponent();
 
-            DatabaseLoad();
-
-
         }
-
-
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            DatabaseLoad();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+
+        //ADD
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
+            //Check the quantity of the chosen strings
+            if (dataGridImportantUrgent.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Choose only one string!", "Attention");
+                return;
+            }
+
+
+            //Remember the chosen string
+            int index = dataGridImportantUrgent.SelectedRows[0].Index;
+
+            //Check the data in the table
+            if (dataGridImportantUrgent.Rows[index].Cells[0].Value == null ||
+                dataGridImportantUrgent.Rows[index].Cells[1].Value == null)
+            {
+                MessageBox.Show("Not all data was written", "Attention");
+                return;
+            }
+
+
+            //Read the data
+            string id = dataGridImportantUrgent.Rows[index].Cells[0].Value.ToString();
+            string title = dataGridImportantUrgent.Rows[index].Cells[1].Value.ToString();
+
+            //Create the connection
+            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
+            OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
+
+            //Running a database query
+            dbConnection.Open(); //Open connection
+
+            string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //srting of query
+            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
+
+            //Create a query
+            if (dbCommand.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Mistake of the query", "Mistake!");
+            }
+            else
+            {
+                MessageBox.Show("Data was added", "Attention"); //Delete the string from the form's table
+            }
+
+            //Close the connection with DataBase
+            dbConnection.Close();
 
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -49,7 +89,7 @@ namespace TODO_list
 
 
 
-
+        //LOAD
         //This function writes vertical text for label lbImportant "tärkeä" 
         private void lbImportant_Paint(object sender, PaintEventArgs e)
         {
@@ -102,8 +142,14 @@ namespace TODO_list
 
             }
 
+            //Close the connection
+            dbReader.Close();
+            dbConnection.Close();
+
 
         }
+
+
 
     }
 }

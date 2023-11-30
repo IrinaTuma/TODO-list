@@ -40,9 +40,8 @@
             this.lbNotImportant = new System.Windows.Forms.Label();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.lbTitle = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.dataGridImportantUrgent = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,25 +126,12 @@
             this.lbTitle.Text = "otsikko";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEdit.Location = new System.Drawing.Point(799, 597);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(152, 49);
-            this.btnEdit.TabIndex = 10;
-            this.btnEdit.Text = "muokata";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.DarkCyan;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Transparent;
-            this.btnDelete.Location = new System.Drawing.Point(975, 597);
+            this.btnDelete.Location = new System.Drawing.Point(809, 597);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(152, 49);
             this.btnDelete.TabIndex = 11;
@@ -153,18 +139,18 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnSave
+            // btnAdd
             // 
-            this.btnSave.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSave.Location = new System.Drawing.Point(625, 597);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(152, 49);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "tallentaa";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnAdd.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.Transparent;
+            this.btnAdd.Location = new System.Drawing.Point(625, 597);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(152, 49);
+            this.btnAdd.TabIndex = 12;
+            this.btnAdd.Text = "lisätä";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // dataGridImportantUrgent
             // 
@@ -201,6 +187,7 @@
             this.dataGridImportantUrgent.GridColor = System.Drawing.Color.White;
             this.dataGridImportantUrgent.Location = new System.Drawing.Point(337, 221);
             this.dataGridImportantUrgent.Name = "dataGridImportantUrgent";
+            this.dataGridImportantUrgent.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.DarkCyan;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,7 +196,6 @@
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridImportantUrgent.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridImportantUrgent.RowHeadersVisible = false;
             this.dataGridImportantUrgent.RowHeadersWidth = 62;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.DarkCyan;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -219,7 +205,7 @@
             this.dataGridImportantUrgent.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridImportantUrgent.RowTemplate.Height = 28;
             this.dataGridImportantUrgent.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridImportantUrgent.Size = new System.Drawing.Size(242, 236);
+            this.dataGridImportantUrgent.Size = new System.Drawing.Size(299, 236);
             this.dataGridImportantUrgent.TabIndex = 13;
             // 
             // id
@@ -241,9 +227,8 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1200, 886);
             this.Controls.Add(this.dataGridImportantUrgent);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.lbImportant);
@@ -272,9 +257,8 @@
         private System.Windows.Forms.Label lbNotImportant;
         private System.Windows.Forms.TextBox textBoxTitle;
         private System.Windows.Forms.Label lbTitle;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dataGridImportantUrgent;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
