@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
-
-
+using System.Linq.Expressions;
 
 namespace TODO_list
 {
@@ -25,12 +24,15 @@ namespace TODO_list
         private void Form1_Load(object sender, EventArgs e)
         {
             DatabaseLoad();
+
+            this.dataGridImportantUrgent.Columns[0].Visible = false; //hide this column with id
         }
 
 
         //ADD
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
+
             //Check the quantity of the chosen strings
             if (dataGridImportantUrgent.SelectedRows.Count != 1)
             {
@@ -43,7 +45,7 @@ namespace TODO_list
             int index = dataGridImportantUrgent.SelectedRows[0].Index;
 
             //Check the data in the table
-            if (dataGridImportantUrgent.Rows[index].Cells[0].Value == null ||
+            if (//dataGridImportantUrgent.Rows[index].Cells[0].Value == null ||
                 dataGridImportantUrgent.Rows[index].Cells[1].Value == null)
             {
                 MessageBox.Show("Not all data was written", "Attention");
@@ -52,7 +54,7 @@ namespace TODO_list
 
 
             //Read the data
-            string id = dataGridImportantUrgent.Rows[index].Cells[0].Value.ToString();
+            //string id = dataGridImportantUrgent.Rows[index].Cells[0].Value.ToString();
             string title = dataGridImportantUrgent.Rows[index].Cells[1].Value.ToString();
 
             //Create the connection
@@ -62,21 +64,32 @@ namespace TODO_list
             //Running a database query
             dbConnection.Open(); //Open connection
 
-            string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //srting of query
+            string query = "INSERT INTO base1 (Title) VALUES (@title)"; //srting of query
+            //string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //srting of query
             OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
+            dbCommand.Parameters.AddWithValue("@title", title);
+
+
 
             //Create a query
-            if (dbCommand.ExecuteNonQuery() != 1)
+            try
             {
-                MessageBox.Show("Mistake of the query", "Mistake!");
+                int rowsAffected = dbCommand.ExecuteNonQuery();
+                MessageBox.Show("Data was added", "Attention");
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Data was added", "Attention"); //Delete the string from the form's table
+                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
             }
+
+
 
             //Close the connection with DataBase
             dbConnection.Close();
+
+            dataGridImportantUrgent.Rows.Clear(); //Clean the dataGridImportantUrgent
+            DatabaseLoad();//Load DataBase
 
         }
 
@@ -84,6 +97,7 @@ namespace TODO_list
         //DELETE
         private void btnDelete_Click(object sender, EventArgs e)
         {
+
             //Check the quantity of the chosen strings
             if (dataGridImportantUrgent.SelectedRows.Count != 1)
             {
@@ -117,28 +131,40 @@ namespace TODO_list
             string query = "DELETE FROM base1 WHERE id = " + id; //string of query
             OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
 
-            //Create a query
-            if (dbCommand.ExecuteNonQuery() != 1)
-            {
-                MessageBox.Show("Mistake of the query", "Mistake!");
-            }
-            else
-            {
-                MessageBox.Show("Data was deleted", "Attention");
-                //Delete Data from the tabledta
-                dataGridImportantUrgent.Rows.RemoveAt(index);
 
+
+
+            //Create a query
+            try
+            {
+                int rowsAffected = dbCommand.ExecuteNonQuery();
+                if (rowsAffected != 1)
+                {
+                    MessageBox.Show("Mistake of the query", "Mistake!");
+                }
+                else
+                {
+                    MessageBox.Show("Data was deleted", "Attention");
+                    // Delete Data from the table
+                    dataGridImportantUrgent.Rows.RemoveAt(index);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+            }
+
 
             //Close the connection with DataBase
             dbConnection.Close();
+
 
         }
 
 
 
 
-        //This function writes vertical text for label lbImportant "tärkeä" 
+        //FUNCTION: writes vertical text for label lbImportant "tärkeä" 
         private void lbImportant_Paint(object sender, PaintEventArgs e)
         {
             Font myfont = new Font("Microsoft Sans Serif", 16);
@@ -150,7 +176,7 @@ namespace TODO_list
         }
 
 
-        //This function writes vertical text for label lbNotImportant "ei tärkeä"
+        //FUNCTION: writes vertical text for label lbNotImportant "ei tärkeä"
         private void lbNotImportant_Paint(object sender, PaintEventArgs e)
         {
             Font myfont = new Font("Microsoft Sans Serif", 16);
@@ -160,8 +186,10 @@ namespace TODO_list
             e.Graphics.DrawString("ei tärkeää", myfont, myBrush, 0, 0);
         }
 
+
+
         //LOAD
-        //Functio: Load Database
+        //FUNCTION: Load Database
         private void DatabaseLoad()
         {
             string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
@@ -170,25 +198,34 @@ namespace TODO_list
             //Running a database query
             dbConnection.Open(); //Open connection
 
-            string query = "SELECT * FROM base1"; //srting of query
-            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //comand
+            string query = "SELECT * FROM base1"; //string of query
+            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
             OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
 
 
             //Check data
-            if (dbReader.HasRows == false)
+            try
             {
-                MessageBox.Show("Data wasn,t found!", "Mistake");
-            }
-            else
-            {
-                //Write data to the form's table
-                while (dbReader.Read())
+                if (dbReader.HasRows == false)
                 {
-                    dataGridImportantUrgent.Rows.Add(dbReader["id"], dbReader["Title"]);
+                    MessageBox.Show("Data wasn't found!", "Mistake");
+                }
+                else
+                {
+                    //Write data to the form's table
+                    while (dbReader.Read())
+                    {
+                        dataGridImportantUrgent.Rows.Add(dbReader["id"], dbReader["Title"]);
+                    }
+
                 }
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+            }
+
 
             //Close the connection
             dbReader.Close();
