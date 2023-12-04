@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Linq.Expressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection;
 
 namespace TODO_list
 {
@@ -33,39 +35,26 @@ namespace TODO_list
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
 
-            //Check the quantity of the chosen strings
-            if (dataGridImportantUrgent.SelectedRows.Count != 1)
+            //Check that Text Box is not empty
+            if (string.IsNullOrWhiteSpace(textBoxTitle.Text))
             {
-                MessageBox.Show("Choose only one string!", "Attention");
-                return;
-            }
-
-
-            //Remember the chosen string
-            int index = dataGridImportantUrgent.SelectedRows[0].Index;
-
-            //Check the data in the table
-            if (//dataGridImportantUrgent.Rows[index].Cells[0].Value == null ||
-                dataGridImportantUrgent.Rows[index].Cells[1].Value == null)
-            {
-                MessageBox.Show("Not all data was written", "Attention");
+                MessageBox.Show("Enter data in the TextBox!", "Attention");
                 return;
             }
 
 
             //Read the data
-            //string id = dataGridImportantUrgent.Rows[index].Cells[0].Value.ToString();
-            string title = dataGridImportantUrgent.Rows[index].Cells[1].Value.ToString();
+            string title = textBoxTitle.Text;
 
             //Create the connection
             string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
             OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
 
             //Running a database query
-            dbConnection.Open(); //Open connection
+
 
             string query = "INSERT INTO base1 (Title) VALUES (@title)"; //srting of query
-            //string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //srting of query
+            //string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //string of query
             OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
             dbCommand.Parameters.AddWithValue("@title", title);
 
@@ -74,9 +63,20 @@ namespace TODO_list
             //Create a query
             try
             {
+                dbConnection.Open(); //Open connection
                 int rowsAffected = dbCommand.ExecuteNonQuery();
-                MessageBox.Show("Data was added", "Attention");
 
+
+
+                //Close the connection with DataBase
+                dbConnection.Close();
+
+                //Clean the text box
+                textBoxTitle.Clear();
+
+                dataGridImportantUrgent.Rows.Clear(); //Clean the dataGridImportantUrgent
+                DatabaseLoad();//Load DataBase
+                MessageBox.Show("Data was added", "Attention");
             }
             catch (Exception ex)
             {
@@ -85,11 +85,6 @@ namespace TODO_list
 
 
 
-            //Close the connection with DataBase
-            dbConnection.Close();
-
-            dataGridImportantUrgent.Rows.Clear(); //Clean the dataGridImportantUrgent
-            DatabaseLoad();//Load DataBase
 
         }
 
@@ -98,8 +93,11 @@ namespace TODO_list
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
+            /*
+             * Old Code for Button Delete
+             * 
             //Check the quantity of the chosen strings
-            if (dataGridImportantUrgent.SelectedRows.Count != 1)
+            if (dataGridImportantUrgent.SelectedRows.Count > 1)
             {
                 MessageBox.Show("Choose only one string!", "Attention");
                 return;
@@ -157,6 +155,54 @@ namespace TODO_list
 
             //Close the connection with DataBase
             dbConnection.Close();
+            
+             */
+
+            // Check that the cell exists
+            if (dataGridImportantUrgent.CurrentCell != null &&
+                dataGridImportantUrgent.CurrentCell.Value != null)
+            {
+                // Recieve the data fron the cell
+                string title = dataGridImportantUrgent.CurrentCell.Value.ToString();
+
+                // Create the connection with DataBase
+                string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
+                using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
+                {
+                    string query = "DELETE FROM base1 WHERE Title = @title";
+                    using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
+                    {
+                        dbCommand.Parameters.AddWithValue("@title", title);
+
+                        try
+                        {
+                            dbConnection.Open();
+                            int rowsAffected = dbCommand.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+
+
+                                // Delete the string from DataGridView
+                                dataGridImportantUrgent.Rows.RemoveAt(dataGridImportantUrgent.CurrentCell.RowIndex);
+                                MessageBox.Show("Data was deleted", "Attention");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No data deleted", "Attention");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No cell selected", "Attention");
+            }
 
 
         }
