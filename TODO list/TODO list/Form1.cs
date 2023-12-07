@@ -14,6 +14,9 @@ using System.Reflection;
 
 namespace TODO_list
 {
+
+
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -28,6 +31,7 @@ namespace TODO_list
             DatabaseLoad();
 
             this.dataGridImportantUrgent.Columns[0].Visible = false; //hide this column with id
+
         }
 
 
@@ -245,6 +249,8 @@ namespace TODO_list
                         while (dbReader.Read()) //while there are still rows to add
                         {
                             dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
+                            dataGridImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting); //this function shanges the color for titles with checkbox = true
+
                         }
                     }
                     else
@@ -260,8 +266,38 @@ namespace TODO_list
                 {
                     MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
                 }
+
             }
         }
+
+
+
+        //Color changing for titles, if checkbox = true
+        private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            //Color for Title
+            if (e.ColumnIndex == dataGridImportantUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            {
+                // Check the value of CheckBox in the row
+                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    // Если CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.Color1;
+
+                }
+                else
+                {
+                    // In other way use default color
+                    e.CellStyle.ForeColor = dataGridImportantUrgent.DefaultCellStyle.ForeColor;
+                }
+
+            }
+
+        }
+
+
 
 
 
