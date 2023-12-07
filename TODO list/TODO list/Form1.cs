@@ -100,17 +100,29 @@ namespace TODO_list
         {
 
             // Check that the cell exists
-            if (dataGridImportantUrgent.CurrentCell != null &&
-                dataGridImportantUrgent.CurrentCell.Value != null)
+            if (dataGridImportantUrgent.SelectedCells.Count > 0)
             {
-                // Recieve the data fron the cell
-                string title = dataGridImportantUrgent.CurrentCell.Value.ToString();
+                int rowIndex = dataGridImportantUrgent.SelectedCells[0].RowIndex;
+
+                // Check that all other cells are in the same raw
+                foreach (DataGridViewCell cell in dataGridImportantUrgent.SelectedCells)
+                {
+                    if (cell.RowIndex != rowIndex)
+                    {
+                        MessageBox.Show("You can delete only one raw at a time", "Attention");
+                        return;
+                    }
+                }
+
+                // If all cells are in one raw, continue deletion
+                // Recieve the data from the cell
+            string title = dataGridImportantUrgent.CurrentCell.Value.ToString();
 
                 // Create the connection with DataBase
                 string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
                 using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
                 {
-                    string query = "DELETE FROM base1 WHERE Title = @title";
+                    string query = "DELETE FROM base1 WHERE Title = @title"; //query
                     using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
                     {
                         dbCommand.Parameters.AddWithValue("@title", title);
@@ -123,8 +135,6 @@ namespace TODO_list
 
                             if (rowsAffected > 0)
                             {
-
-
                                 // Delete the string from DataGridView
                                 dataGridImportantUrgent.Rows.RemoveAt(dataGridImportantUrgent.CurrentCell.RowIndex);
                                 MessageBox.Show("Data was deleted", "Attention");
@@ -141,13 +151,18 @@ namespace TODO_list
                     }
                 }
             }
+     
             else
             {
-                MessageBox.Show("No cell selected", "Attention");
+                MessageBox.Show("No cells selected", "Attention");
             }
 
 
         }
+
+
+
+
 
 
         //CHECKBOX
@@ -210,29 +225,7 @@ namespace TODO_list
         }
 
 
-        //VERTICAL TEXT FUNCTION
-        private void VerticalText(PaintEventArgs e)
-        {
-            Font myfont = new Font("Microsoft Sans Serif", 16);
-            Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-            e.Graphics.TranslateTransform(30, 170);
-            e.Graphics.RotateTransform(-90);
-            e.Graphics.DrawString("tärkeää", myfont, myBrush, 0, 0);
-        }
 
-
-        //FUNCTION: writes vertical text for label lbImportant "tärkeä" 
-        private void lbImportant_Paint(object sender, PaintEventArgs e)
-        {
-            VerticalText(e);
-
-        }
-
-        //FUNCTION: writes vertical text for label lbNotImportant "ei tärkeä"
-        private void lbNotImportant_Paint(object sender, PaintEventArgs e)
-        {
-            VerticalText(e);
-        }
 
 
 
@@ -278,9 +271,35 @@ namespace TODO_list
             }
         }
 
+        //VERTICAL TEXT FUNCTION
+        private void VerticalText(PaintEventArgs e)
+        {
+            Font myfont = new Font("Microsoft Sans Serif", 16);
+            Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+            e.Graphics.TranslateTransform(30, 170);
+            e.Graphics.RotateTransform(-90);
+            e.Graphics.DrawString("tärkeää", myfont, myBrush, 0, 0);
+        }
 
 
-        //Color changing for titles, if checkbox = true
+        //Writes vertical text for label lbImportant "tärkeä" 
+        private void lbImportant_Paint(object sender, PaintEventArgs e)
+        {
+            VerticalText(e);
+
+        }
+
+        //Writes vertical text for label lbNotImportant "ei tärkeä"
+        private void lbNotImportant_Paint(object sender, PaintEventArgs e)
+        {
+            VerticalText(e);
+        }
+
+
+
+
+
+        //FUNCTION: Color changing for titles, if checkbox = true
         private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
