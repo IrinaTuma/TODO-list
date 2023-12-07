@@ -51,8 +51,6 @@ namespace TODO_list
             OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
 
             //Running a database query
-
-
             string query = "INSERT INTO base1 (Title) VALUES (@title)"; //srting of query
             //string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //string of query
             OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
@@ -65,7 +63,6 @@ namespace TODO_list
             {
                 dbConnection.Open(); //Open connection
                 int rowsAffected = dbCommand.ExecuteNonQuery();
-
 
 
                 //Close the connection with DataBase
@@ -83,10 +80,8 @@ namespace TODO_list
                 MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
             }
 
-
-
-
         }
+
 
 
         //DELETE
@@ -178,6 +173,7 @@ namespace TODO_list
                         {
                             dbConnection.Open();
                             int rowsAffected = dbCommand.ExecuteNonQuery();
+                            dbConnection.Close();
 
                             if (rowsAffected > 0)
                             {
@@ -207,6 +203,65 @@ namespace TODO_list
 
         }
 
+
+        //CHECKBOX
+        private void dataGridImportantUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridImportantUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
+            {
+                DataGridViewCheckBoxCell cell = dataGridImportantUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+
+                // Change CheckBox
+                if (cell != null)
+                {
+                    bool isChecked = !(bool)cell.Value;
+
+                    // logic, when CheckBox changes
+                    // isChecked contains new state of CheckBox (true - chosen, false - not chosen)
+
+                    // Update value CheckBox in Database
+                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
+                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
+                    {
+                        string updateQuery = "UPDATE base1 SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
+                        using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
+                        {
+                            updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
+                            updateCommand.Parameters.AddWithValue("@id", dataGridImportantUrgent.Rows[e.RowIndex].Cells["ID"].Value); // Замените "ID" на ваше поле с ID
+
+                            try
+                            {
+                                dbConnection.Open();
+
+                                Console.WriteLine(updateCommand.ExecuteScalar());
+
+                                int rowsAffected = updateCommand.ExecuteNonQuery();
+
+
+
+
+                                dbConnection.Close();
+
+                                if (rowsAffected == 1)
+                                {
+                                    dataGridImportantUrgent.Rows.Clear(); //Clean the dataGridImportantUrgent
+                                    DatabaseLoad();
+                                    MessageBox.Show("Database updated!", "Success");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No rows updated!", "Error");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Database update error: " + ex.Message, "Error");
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 
 
@@ -261,7 +316,7 @@ namespace TODO_list
                     //Write data to the form's table
                     while (dbReader.Read())
                     {
-                        dataGridImportantUrgent.Rows.Add(dbReader["id"], dbReader["Title"]);
+                        dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]);
                     }
 
                 }
@@ -279,7 +334,6 @@ namespace TODO_list
 
 
         }
-
 
 
     }

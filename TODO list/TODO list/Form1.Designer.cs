@@ -204,7 +204,6 @@
             this.dataGridImportantUrgent.GridColor = System.Drawing.Color.White;
             this.dataGridImportantUrgent.Location = new System.Drawing.Point(271, 116);
             this.dataGridImportantUrgent.Name = "dataGridImportantUrgent";
-            this.dataGridImportantUrgent.ReadOnly = true;
             this.dataGridImportantUrgent.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.IndianRed;
@@ -227,6 +226,7 @@
             this.dataGridImportantUrgent.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridImportantUrgent.Size = new System.Drawing.Size(343, 236);
             this.dataGridImportantUrgent.TabIndex = 13;
+            this.dataGridImportantUrgent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridImportantUrgent_CellContentClick);
             // 
             // dataGridNotImportantUrgent
             // 
@@ -500,7 +500,6 @@
             this.id.HeaderText = "Id";
             this.id.MinimumWidth = 8;
             this.id.Name = "id";
-            this.id.ReadOnly = true;
             // 
             // title
             // 
@@ -512,18 +511,19 @@
             // 
             // checkDone
             // 
+            this.checkDone.FalseValue = "No";
             this.checkDone.FillWeight = 35F;
             this.checkDone.HeaderText = "Check";
-            this.checkDone.MinimumWidth = 3;
+            this.checkDone.MinimumWidth = 35;
             this.checkDone.Name = "checkDone";
-            this.checkDone.ReadOnly = true;
+            this.checkDone.TrueValue = "Yes";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1200, 772);
+            this.ClientSize = new System.Drawing.Size(1200, 795);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
