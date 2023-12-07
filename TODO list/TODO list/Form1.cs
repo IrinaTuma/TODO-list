@@ -23,6 +23,8 @@ namespace TODO_list
         {
             InitializeComponent();
 
+
+
         }
 
 
@@ -99,62 +101,55 @@ namespace TODO_list
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            // Check that the cell exists
-            if (dataGridImportantUrgent.SelectedCells.Count > 0)
+            // Check that the row exists
+            if (dataGridImportantUrgent.SelectedRows.Count > 0)
             {
-                int rowIndex = dataGridImportantUrgent.SelectedCells[0].RowIndex;
 
-                // Check that all other cells are in the same raw
-                foreach (DataGridViewCell cell in dataGridImportantUrgent.SelectedCells)
+                // To do the same for each chosen row
+                foreach (DataGridViewRow row in dataGridImportantUrgent.SelectedRows)
                 {
-                    if (cell.RowIndex != rowIndex)
+                    
+                    // Recieve the data from the cell
+                    string title = row.Cells["title"].Value.ToString();
+
+                    // Create the connection with DataBase
+                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
+                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
                     {
-                        MessageBox.Show("You can delete only one raw at a time", "Attention");
-                        return;
+                        string query = "DELETE FROM base1 WHERE Title = @title"; // query of deletion
+                        using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
+                        {
+                            dbCommand.Parameters.AddWithValue("@title", title);
+
+                            try
+                            {
+                                dbConnection.Open();
+                                int rowsAffected = dbCommand.ExecuteNonQuery();
+                                dbConnection.Close();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Delete the string from DataGridView
+                                    dataGridImportantUrgent.Rows.Remove(row);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No data deleted", "Attention");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                            }
+                        }
                     }
                 }
 
-                // If all cells are in one raw, continue deletion
-                // Recieve the data from the cell
-            string title = dataGridImportantUrgent.CurrentCell.Value.ToString();
-
-                // Create the connection with DataBase
-                string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
-                using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
-                {
-                    string query = "DELETE FROM base1 WHERE Title = @title"; //query
-                    using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
-                    {
-                        dbCommand.Parameters.AddWithValue("@title", title);
-
-                        try
-                        {
-                            dbConnection.Open();
-                            int rowsAffected = dbCommand.ExecuteNonQuery();
-                            dbConnection.Close();
-
-                            if (rowsAffected > 0)
-                            {
-                                // Delete the string from DataGridView
-                                dataGridImportantUrgent.Rows.RemoveAt(dataGridImportantUrgent.CurrentCell.RowIndex);
-                                MessageBox.Show("Data was deleted", "Attention");
-                            }
-                            else
-                            {
-                                MessageBox.Show("No data deleted", "Attention");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
-                        }
-                    }
-                }
+                MessageBox.Show("Selected rows deleted", "Success");
             }
-     
             else
             {
-                MessageBox.Show("No cells selected", "Attention");
+                MessageBox.Show("Select rows to delete", "Attention");
             }
 
 
@@ -163,14 +158,15 @@ namespace TODO_list
 
 
 
-
-
         //CHECKBOX
         private void dataGridImportantUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.ColumnIndex == dataGridImportantUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
             {
                 DataGridViewCheckBoxCell cell = dataGridImportantUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+
+
 
                 // Change CheckBox
                 if (cell != null)
@@ -198,9 +194,6 @@ namespace TODO_list
 
                                 int rowsAffected = updateCommand.ExecuteNonQuery();
 
-
-
-
                                 dbConnection.Close();
 
                                 if (rowsAffected == 1)
@@ -213,6 +206,8 @@ namespace TODO_list
                                 {
                                     MessageBox.Show("No rows updated!", "Error");
                                 }
+
+
                             }
                             catch (Exception ex)
                             {
@@ -222,6 +217,12 @@ namespace TODO_list
                     }
                 }
             }
+
+
+
+
+
+
         }
 
 
@@ -326,7 +327,22 @@ namespace TODO_list
 
 
 
+        //FUNCTION: Selecting an entire line
+        private void dataGridImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                //Deselect the previous line
+                if (dataGridImportantUrgent.CurrentRow != null)
+                {
+                    dataGridImportantUrgent.CurrentRow.Selected = false;
+                }
+
+                //Select the entry line clicked on
+                dataGridImportantUrgent.Rows[e.RowIndex].Selected = true;
+            }
 
 
+        }
     }
 }
