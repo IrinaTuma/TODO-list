@@ -88,71 +88,6 @@ namespace TODO_list
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            /*
-             * Old Code for Button Delete
-             * 
-            //Check the quantity of the chosen strings
-            if (dataGridImportantUrgent.SelectedRows.Count > 1)
-            {
-                MessageBox.Show("Choose only one string!", "Attention");
-                return;
-            }
-
-
-            //Remember the chosen string
-            int index = dataGridImportantUrgent.SelectedRows[0].Index;
-
-            //Check the data in the table
-            if (dataGridImportantUrgent.Rows[index].Cells[0].Value == null)
-            {
-                MessageBox.Show("Not all data was written", "Attention");
-                return;
-            }
-
-
-
-            //Read the data
-            string id = dataGridImportantUrgent.Rows[index].Cells[0].Value.ToString();
-
-            //Create the connection
-            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
-            OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
-
-            //Running a database query
-            dbConnection.Open(); //Open connection
-
-            string query = "DELETE FROM base1 WHERE id = " + id; //string of query
-            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
-
-
-
-
-            //Create a query
-            try
-            {
-                int rowsAffected = dbCommand.ExecuteNonQuery();
-                if (rowsAffected != 1)
-                {
-                    MessageBox.Show("Mistake of the query", "Mistake!");
-                }
-                else
-                {
-                    MessageBox.Show("Data was deleted", "Attention");
-                    // Delete Data from the table
-                    dataGridImportantUrgent.Rows.RemoveAt(index);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
-            }
-
-
-            //Close the connection with DataBase
-            dbConnection.Close();
-            
-             */
-
             // Check that the cell exists
             if (dataGridImportantUrgent.CurrentCell != null &&
                 dataGridImportantUrgent.CurrentCell.Value != null)
@@ -290,50 +225,44 @@ namespace TODO_list
 
 
         //LOAD
-        //FUNCTION: Load Database
+        //FUNCTION: Loading of Database and sorting it by "Check" column
         private void DatabaseLoad()
         {
-            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
-            OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
+            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
+            string query = "SELECT * FROM base1 ORDER BY IIF(Check = true, 1, 0)"; //string of query
 
-            //Running a database query
-            dbConnection.Open(); //Open connection
-
-            string query = "SELECT * FROM base1"; //string of query
-            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
-            OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
-
-
-            //Check data
-            try
+            using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
             {
-                if (dbReader.HasRows == false)
+                OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
+
+                try
                 {
-                    MessageBox.Show("Data wasn't found!", "Mistake");
-                }
-                else
-                {
-                    //Write data to the form's table
-                    while (dbReader.Read())
+                    dbConnection.Open(); //Open connection
+                    OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
+
+                    if (dbReader.HasRows)
                     {
-                        dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]);
+                        while (dbReader.Read()) //while there are still rows to add
+                        {
+                            dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data wasn't found!", "Mistake");
                     }
 
+                    //Close the connection
+                    dbReader.Close();
+                    dbConnection.Close();
                 }
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
-            }
-
-
-            //Close the connection
-            dbReader.Close();
-            dbConnection.Close();
-
-
         }
+
 
 
     }

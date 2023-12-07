@@ -500,6 +500,7 @@
             this.id.HeaderText = "Id";
             this.id.MinimumWidth = 8;
             this.id.Name = "id";
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // title
             // 
@@ -508,6 +509,7 @@
             this.title.MinimumWidth = 8;
             this.title.Name = "title";
             this.title.ReadOnly = true;
+            this.title.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // checkDone
             // 
@@ -516,6 +518,7 @@
             this.checkDone.HeaderText = "Check";
             this.checkDone.MinimumWidth = 35;
             this.checkDone.Name = "checkDone";
+            this.checkDone.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.checkDone.TrueValue = "Yes";
             // 
             // Form1
