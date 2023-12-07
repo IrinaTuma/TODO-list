@@ -23,8 +23,6 @@ namespace TODO_list
         {
             InitializeComponent();
 
-
-
         }
 
 
@@ -108,7 +106,7 @@ namespace TODO_list
                 // To do the same for each chosen row
                 foreach (DataGridViewRow row in dataGridImportantUrgent.SelectedRows)
                 {
-                    
+
                     // Recieve the data from the cell
                     string title = row.Cells["title"].Value.ToString();
 
@@ -273,27 +271,29 @@ namespace TODO_list
         }
 
         //VERTICAL TEXT FUNCTION
-        private void VerticalText(PaintEventArgs e)
+        private void VerticalText(PaintEventArgs e, string word)
         {
             Font myfont = new Font("Microsoft Sans Serif", 16);
-            Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+            Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.DimGray);
             e.Graphics.TranslateTransform(30, 170);
             e.Graphics.RotateTransform(-90);
-            e.Graphics.DrawString("tärkeää", myfont, myBrush, 0, 0);
+            e.Graphics.DrawString(word, myfont, myBrush, 0, 0);
         }
 
 
         //Writes vertical text for label lbImportant "tärkeä" 
         private void lbImportant_Paint(object sender, PaintEventArgs e)
         {
-            VerticalText(e);
+            string word = "tärkeää";
+            VerticalText(e, word);
 
         }
 
         //Writes vertical text for label lbNotImportant "ei tärkeä"
         private void lbNotImportant_Paint(object sender, PaintEventArgs e)
         {
-            VerticalText(e);
+            string word = "ei tärkeää";
+            VerticalText(e, word);
         }
 
 
@@ -344,5 +344,7 @@ namespace TODO_list
 
 
         }
+
+
     }
 }

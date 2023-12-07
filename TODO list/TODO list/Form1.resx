@@ -117,6 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB8AAAAgCAYAAADqgqNBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAACjSURBVFhH7ZPBCcAgDEW7rkfXcA7XcA7XcIOUfxBCq20s
+        tJ9CDg8xCb4EdWutCQuXU3A5BZdTMMtzzpJSklrrMI848qgb5UeY5Tg4hCAxxlMD2COOPOp07gqzXAt0
+        A7O4haU7P4pKKY/FYPnB6QY6T8RgWQ4wsZZjP6q74z+TazHWz+78KO6iWdyCWU795zj0arLewCvyN3A5
+        BZdTcDkForzJDu13ZkTwMCtZAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
