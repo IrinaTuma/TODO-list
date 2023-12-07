@@ -39,10 +39,13 @@ namespace TODO_list
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
 
-            //Check that Text Box is not empty
-            if (string.IsNullOrWhiteSpace(textBoxTitle.Text))
+            // Set the max length for TextBox
+            textBoxTitle.MaxLength = 55;
+
+            // Check that Text Box is not empty and not longer that 50 symbols
+            if (string.IsNullOrWhiteSpace(textBoxTitle.Text) || textBoxTitle.Text.Length > textBoxTitle.MaxLength)
             {
-                MessageBox.Show("Enter data in the TextBox!", "Attention");
+                MessageBox.Show("Enter data in the TextBox up to 55 characters!", "Attention");
                 return;
             }
 
