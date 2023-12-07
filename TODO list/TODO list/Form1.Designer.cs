@@ -130,6 +130,7 @@
             // 
             // textBoxTitle
             // 
+            this.textBoxTitle.AccessibleDescription = "Kirjoita tehtävä";
             this.textBoxTitle.BackColor = System.Drawing.Color.White;
             this.textBoxTitle.Location = new System.Drawing.Point(271, 656);
             this.textBoxTitle.Name = "textBoxTitle";
@@ -501,6 +502,7 @@
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Transparent;
             this.id.DefaultCellStyle = dataGridViewCellStyle3;
@@ -512,8 +514,10 @@
             // 
             // title
             // 
+            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.title.FillWeight = 258.6645F;
             this.title.HeaderText = "Title";
+            this.title.MaxInputLength = 55;
             this.title.MinimumWidth = 8;
             this.title.Name = "title";
             this.title.ReadOnly = true;

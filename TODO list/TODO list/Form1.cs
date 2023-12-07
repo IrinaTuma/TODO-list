@@ -28,9 +28,13 @@ namespace TODO_list
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DatabaseLoad();
 
+            dataGridImportantUrgent.RowTemplate.Height = 34; //height of the rows in DataGridView
             this.dataGridImportantUrgent.Columns[0].Visible = false; //hide this column with id
+
+
+            DatabaseLoad(); //Loading of Database 
+
 
         }
 
@@ -206,27 +210,28 @@ namespace TODO_list
         }
 
 
-
-        //FUNCTION: writes vertical text for label lbImportant "tärkeä" 
-        private void lbImportant_Paint(object sender, PaintEventArgs e)
+        //VERTICAL TEXT FUNCTION
+        private void VerticalText(PaintEventArgs e)
         {
             Font myfont = new Font("Microsoft Sans Serif", 16);
             Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
             e.Graphics.TranslateTransform(30, 170);
             e.Graphics.RotateTransform(-90);
             e.Graphics.DrawString("tärkeää", myfont, myBrush, 0, 0);
-
         }
 
+
+        //FUNCTION: writes vertical text for label lbImportant "tärkeä" 
+        private void lbImportant_Paint(object sender, PaintEventArgs e)
+        {
+            VerticalText(e);
+
+        }
 
         //FUNCTION: writes vertical text for label lbNotImportant "ei tärkeä"
         private void lbNotImportant_Paint(object sender, PaintEventArgs e)
         {
-            Font myfont = new Font("Microsoft Sans Serif", 16);
-            Brush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-            e.Graphics.TranslateTransform(30, 170);
-            e.Graphics.RotateTransform(-90);
-            e.Graphics.DrawString("ei tärkeää", myfont, myBrush, 0, 0);
+            VerticalText(e);
         }
 
 
