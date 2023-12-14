@@ -40,9 +40,8 @@ namespace TODO_list
 
 
         //ADD
-        private void btnAdd_Click_1(object sender, EventArgs e)
+        private void btnRed_Click(object sender, EventArgs e)
         {
-
             // Set the max length for TextBox
             textBoxTitle.MaxLength = 55;
 
@@ -62,8 +61,7 @@ namespace TODO_list
             OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
 
             //Running a database query
-            string query = "INSERT INTO base1 (Title) VALUES (@title)"; //srting of query
-            //string query = "INSERT INTO base1 VALUES (" + id + ",'" + title + "')"; //string of query
+            string query = "INSERT INTO baseImportantUrgent (Title) VALUES (@title)"; //srting of query
             OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
             dbCommand.Parameters.AddWithValue("@title", title);
 
@@ -114,7 +112,7 @@ namespace TODO_list
                     string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
                     using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
                     {
-                        string query = "DELETE FROM base1 WHERE Title = @title"; // query of deletion
+                        string query = "DELETE FROM baseImportantUrgent WHERE Title = @title"; // query of deletion
                         using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
                         {
                             dbCommand.Parameters.AddWithValue("@title", title);
@@ -180,7 +178,7 @@ namespace TODO_list
                     string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
                     using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
                     {
-                        string updateQuery = "UPDATE base1 SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
+                        string updateQuery = "UPDATE baseImportantUrgent SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
                         using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
                         {
                             updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
@@ -235,7 +233,7 @@ namespace TODO_list
         private void DatabaseLoad()
         {
             string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
-            string query = "SELECT * FROM base1 ORDER BY IIF(Check = true, 1, 0)"; //string of query
+            string query = "SELECT * FROM baseImportantUrgent ORDER BY IIF(Check = true, 1, 0)"; //string of query
 
             using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
             {
@@ -348,6 +346,6 @@ namespace TODO_list
 
         }
 
-
     }
+    
 }
