@@ -54,27 +54,27 @@ namespace TODO_list
         //ADD
         private void btnRed_Click(object sender, EventArgs e)
         {
-            AddFunction("baseImportantUrgent", "dataGridImportantUrgent");
+            AddFunction(dataGridImportantUrgent, "baseImportantUrgent");
         }
 
         private void btnGreen_Click(object sender, EventArgs e)
         {
-            AddFunction("baseImportantNotUrgent", "dataGridImportantNotUrgent");
+            AddFunction(dataGridImportantNotUrgent, "baseImportantNotUrgent");
         }
 
         private void btnOrange_Click(object sender, EventArgs e)
         {
-            AddFunction("baseNotImportantUrgent", "dataGridNotImportantUrgent");
+            AddFunction(dataGridNotImportantUrgent, "baseNotImportantUrgent");
         }
 
         private void btnBlue_Click(object sender, EventArgs e)
         {
-            AddFunction("baseNotImportantNotUrgent", "dataGridNotImportantNotUrgent");
+            AddFunction(dataGridNotImportantNotUrgent, "baseNotImportantNotUrgent");
         }
 
 
         //FUNCTION for Add Buttons
-        private void AddFunction(string databaseTable, string dataGridName)
+        private void AddFunction(DataGridView dataGridView, string databaseTable)
         {
             // Set the max length for TextBox
             textBoxTitle.MaxLength = 55;
@@ -115,30 +115,9 @@ namespace TODO_list
                 textBoxTitle.Clear();
 
 
-                if (dataGridName == "dataGridImportantUrgent")
-                {
-                    dataGridImportantUrgent.Rows.Clear();
-                    TableLoad("baseImportantUrgent", "dataGridImportantUrgent");//Load DataBase
+                dataGridView.Rows.Clear();
+                TableLoad(dataGridView, databaseTable);//Load DataBase
 
-                }
-                else if (dataGridName == "dataGridImportantNotUrgent")
-                {
-                    dataGridImportantNotUrgent.Rows.Clear();
-                    TableLoad("baseImportantNotUrgent", "dataGridImportantNotUrgent");//Load DataBase
-
-                }
-                else if (dataGridName == "dataGridNotImportantUrgent")
-                {
-                    dataGridNotImportantUrgent.Rows.Clear();
-                    TableLoad("baseNotImportantUrgent", "dataGridNotImportantUrgent");//Load DataBase
-
-                }
-                else if (dataGridName == "dataGridNotImportantNotUrgent")
-                {
-                    dataGridNotImportantNotUrgent.Rows.Clear();
-                    TableLoad("baseNotImportantNotUrgent", "dataGridNotImportantNotUrgent");//Load DataBase
-
-                }
 
 
                 MessageBox.Show("Data was added", "Attention");
@@ -275,7 +254,7 @@ namespace TODO_list
                                 if (rowsAffected == 1)
                                 {
                                     dataGridView.Rows.Clear();
-                                    TableLoad(tableName, dataGridView.Name);
+                                    TableLoad(dataGridView, tableName);
                                     MessageBox.Show("Database updated!", "Success");
                                 }
                                 else
@@ -305,15 +284,17 @@ namespace TODO_list
         //Loading of Database
         private void DatabaseLoad()
         {
-            TableLoad("baseImportantUrgent", "dataGridImportantUrgent");
-            TableLoad("baseImportantNotUrgent", "dataGridImportantNotUrgent");
-            TableLoad("baseNotImportantUrgent", "dataGridNotImportantUrgent");
-            TableLoad("baseNotImportantNotUrgent", "dataGridNotImportantNotUrgent");
+
+            TableLoad(dataGridImportantUrgent, "baseImportantUrgent");
+            TableLoad(dataGridImportantNotUrgent, "baseImportantNotUrgent");
+            TableLoad(dataGridNotImportantUrgent, "baseNotImportantUrgent");
+            TableLoad(dataGridNotImportantNotUrgent, "baseNotImportantNotUrgent");
+
         }
 
 
         //FUNCTION: Loading of Database and sorting it by "Check" column
-        private void TableLoad(string databaseTable, string dataGridName)
+        private void TableLoad(DataGridView dataGridView, string databaseTable)
         {
             string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
             string query = "SELECT * FROM " + databaseTable + " ORDER BY IIF(Check = true, 1, 0)"; //string of query with sorting by "Check"
@@ -334,35 +315,29 @@ namespace TODO_list
                         {
 
 
-                            //adding the rows in Data Grid, changing the color for titles with checkbox = true, clearing the selection
-                            if (dataGridName == "dataGridImportantUrgent")
-                            {
+                            dataGridView.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
 
-                                dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
+
+
+                            //changing the color for titles with checkbox = true, clearing the selection
+                            if (dataGridView.Name == "dataGridImportantUrgent")
+                            {
                                 dataGridImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
-                                dataGridImportantUrgent.ClearSelection();
                             }
-                            else if (dataGridName == "dataGridNotImportantUrgent")
+                            else if (dataGridView.Name == "dataGridNotImportantUrgent")
                             {
-
-                                dataGridNotImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
                                 dataGridNotImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
-                                dataGridNotImportantUrgent.ClearSelection();
                             }
-                            else if (dataGridName == "dataGridImportantNotUrgent")
+                            else if (dataGridView.Name == "dataGridImportantNotUrgent")
                             {
-
-                                dataGridImportantNotUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
                                 dataGridImportantNotUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantNotUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
-                                dataGridImportantNotUrgent.ClearSelection();
                             }
-                            else if (dataGridName == "dataGridNotImportantNotUrgent")
+                            else if (dataGridView.Name == "dataGridNotImportantNotUrgent")
                             {
-
-                                dataGridNotImportantNotUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
                                 dataGridNotImportantNotUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantNotUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
-                                dataGridNotImportantNotUrgent.ClearSelection();
                             }
+
+                            dataGridView.ClearSelection();
 
 
                         }
@@ -424,7 +399,7 @@ namespace TODO_list
         //Color changing for titles, if checkbox = true (dataGridImportantUrgent)
         private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+
             //Color for Title
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
@@ -443,13 +418,42 @@ namespace TODO_list
                 }
 
             }
-            
+
         }
+
+
+
+        //Color changing for titles, if checkbox = true (dataGridImportantNotUrgent)
+        private void dataGridImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            //Color for Title
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
+            {
+                // Check the value of CheckBox in the row
+                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantNotUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    // If CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.ColorINU;
+
+                }
+                else
+                {
+                    // In other way use default color
+                    e.CellStyle.ForeColor = dataGridImportantNotUrgent.DefaultCellStyle.ForeColor;
+                }
+
+            }
+
+        }
+
+
 
         //Color changing for titles, if checkbox = true (dataGridNotImportantUrgent)
         private void dataGridNotImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+
             //Color for Title
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
@@ -468,38 +472,15 @@ namespace TODO_list
                 }
 
             }
-            
+
         }
 
-        //Color changing for titles, if checkbox = true (dataGridImportantNotUrgent)
-        private void dataGridImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            
-            //Color for Title
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null && (bool)checkBoxCell.Value)
-                {
-                    // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorINU;
 
-                }
-                else
-                {
-                    // In other way use default color
-                    e.CellStyle.ForeColor = dataGridNotImportantUrgent.DefaultCellStyle.ForeColor;
-                }
-
-            }
-            
-        }
 
         //Color changing for titles, if checkbox = true (dataGridNotImportantNotUrgent)
         private void dataGridNotImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+
             //Color for Title
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
@@ -518,7 +499,7 @@ namespace TODO_list
                 }
 
             }
-            
+
         }
 
 
