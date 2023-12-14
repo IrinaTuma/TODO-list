@@ -91,6 +91,101 @@ namespace TODO_list
 
         }
 
+        private void btnGreen_Click(object sender, EventArgs e)
+        {
+            string databaseTable = "baseNotImportantUrgent";
+            string dataGridName = "dataGridNotImportantUrgent";
+
+            AddFunction(databaseTable, dataGridName);
+        }
+
+        private void btnOrange_Click(object sender, EventArgs e)
+        {
+            string databaseTable = "baseImportantNotUrgent";
+            string dataGridName = "dataGridImportantNotUrgent";
+
+            AddFunction(databaseTable, dataGridName);
+        }
+
+        private void btnBlue_Click(object sender, EventArgs e)
+        {
+            string databaseTable = "baseNotImportantNotUrgent";
+            string dataGridName = "dataGridNotImportantNotUrgent";
+
+            AddFunction(databaseTable, dataGridName);
+
+        }
+
+
+        //FUNCTION for Add Buttons
+        private void AddFunction(string databaseTable, string dataGridName)
+        {
+            // Set the max length for TextBox
+            textBoxTitle.MaxLength = 55;
+
+            // Check that Text Box is not empty and not longer that 50 symbols
+            if (string.IsNullOrWhiteSpace(textBoxTitle.Text) || textBoxTitle.Text.Length > textBoxTitle.MaxLength)
+            {
+                MessageBox.Show("Enter data in the TextBox up to 55 characters!", "Attention");
+                return;
+            }
+
+
+            //Read the data
+            string title = textBoxTitle.Text;
+
+            //Create the connection
+            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
+            OleDbConnection dbConnection = new OleDbConnection(connectionString); //Creating of connection
+
+            //Running a database query
+            string query = "INSERT INTO " + databaseTable + " (Title) VALUES (@title)"; //srting of query
+            OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
+            dbCommand.Parameters.AddWithValue("@title", title);
+
+
+
+            //Create a query
+            try
+            {
+                dbConnection.Open(); //Open connection
+                int rowsAffected = dbCommand.ExecuteNonQuery();
+
+
+                //Close the connection with DataBase
+                dbConnection.Close();
+
+                //Clean the text box
+                textBoxTitle.Clear();
+
+
+                //Clean the DataGridView
+                // Find the element DataGridView by its name
+                DataGridView dataGridView = Controls.Find(dataGridName, true).FirstOrDefault() as DataGridView;
+
+                // If the element DataGridView was found, clean it
+                if (dataGridView != null)
+                {
+                    dataGridView.Rows.Clear();
+                }
+
+
+
+                DatabaseLoad();//Load DataBase
+                MessageBox.Show("Data was added", "Attention");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+            }
+
+        }
+
+
+
+
+
+
 
 
         //DELETE
@@ -216,13 +311,7 @@ namespace TODO_list
                 }
             }
 
-
-
-
-
-
         }
-
 
 
 
@@ -232,8 +321,58 @@ namespace TODO_list
         //FUNCTION: Loading of Database and sorting it by "Check" column
         private void DatabaseLoad()
         {
+            /* string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
+             string query = "SELECT * FROM baseImportantUrgent ORDER BY IIF(Check = true, 1, 0)"; //string of query
+
+             using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
+             {
+                 OleDbCommand dbCommand = new OleDbCommand(query, dbConnection); //command
+
+                 try
+                 {
+                     dbConnection.Open(); //Open connection
+                     OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
+
+                     if (dbReader.HasRows)
+                     {
+                         while (dbReader.Read()) //while there are still rows to add
+                         {
+                             dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
+                             dataGridImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting); //this function shanges the color for titles with checkbox = true
+
+                         }
+                     }
+                     else
+                     {
+                         MessageBox.Show("Data wasn't found!", "Mistake");
+                     }
+
+                     //Close the connection
+                     dbReader.Close();
+                     dbConnection.Close();
+                     dataGridImportantUrgent.ClearSelection();
+                 }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                 }
+
+             }*/
+
+
+            TableLoad("baseImportantUrgent", "dataGridImportantUrgent");
+            TableLoad("baseNotImportantUrgent", "dataGridNotImportantUrgent");
+            TableLoad("baseImportantNotUrgent", "dataGridImportantNotUrgent");
+            TableLoad("baseNotImportantNotUrgent", "dataGridNotImportantNotUrgent");
+
+        }
+
+
+        //FUNCTION: Loading of Database and sorting it by "Check" column
+        private void TableLoad(string databaseTable, string dataGridName)
+        {
             string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
-            string query = "SELECT * FROM baseImportantUrgent ORDER BY IIF(Check = true, 1, 0)"; //string of query
+            string query = "SELECT * FROM " + databaseTable + " ORDER BY IIF(Check = true, 1, 0)"; //string of query
 
             using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
             {
@@ -244,12 +383,45 @@ namespace TODO_list
                     dbConnection.Open(); //Open connection
                     OleDbDataReader dbReader = dbCommand.ExecuteReader(); //Read data
 
+                    //Add Data from Database in DataGridView and do Cell formatting
+                    // Find the element DataGridView by its name
+                    DataGridView dataGridView = Controls.Find(dataGridName, true).FirstOrDefault() as DataGridView;
+
+
                     if (dbReader.HasRows)
                     {
                         while (dbReader.Read()) //while there are still rows to add
                         {
-                            dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
-                            dataGridImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting); //this function shanges the color for titles with checkbox = true
+
+                            // Check that the element DataGridView was found
+                            if (dataGridView != null)
+                            {
+                                dataGridView.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
+
+
+                                //this function changes the color for titles with checkbox = true
+                                if (dataGridName == "dataGridImportantUrgent")
+                                {
+                                    dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting);
+
+                                }
+                                else if (dataGridName == "dataGridNotImportantUrgent")
+                                {
+                                    dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantUrgent_CellFormatting);
+
+                                }
+                                else if (dataGridName == "dataGridImportantNotUrgent")
+                                {
+                                    dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantNotUrgent_CellFormatting);
+
+                                }
+                                else if (dataGridName == "dataGridNotImportantNotUrgent")
+                                {
+                                    dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantNotUrgent_CellFormatting);
+                                }
+
+
+                            }
 
                         }
                     }
@@ -261,7 +433,7 @@ namespace TODO_list
                     //Close the connection
                     dbReader.Close();
                     dbConnection.Close();
-                    dataGridImportantUrgent.ClearSelection();
+                    dataGridView.ClearSelection();
                 }
                 catch (Exception ex)
                 {
@@ -270,6 +442,12 @@ namespace TODO_list
 
             }
         }
+
+
+
+
+
+
 
         //VERTICAL TEXT FUNCTION
         private void VerticalText(PaintEventArgs e, string word)
@@ -300,8 +478,8 @@ namespace TODO_list
 
 
 
-
-        //FUNCTION: Color changing for titles, if checkbox = true
+        ////FUNCTIONS: COLOR CHANGING FOR TITLES
+        //Color changing for titles, if checkbox = true (dataGridImportantUrgent)
         private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
@@ -312,8 +490,8 @@ namespace TODO_list
                 DataGridViewCheckBoxCell checkBoxCell = dataGridImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
-                    // Если CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.Color1;
+                    // If CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.ColorIU;
 
                 }
                 else
@@ -325,6 +503,81 @@ namespace TODO_list
             }
 
         }
+
+
+        //Color changing for titles, if checkbox = true (dataGridImportantNotUrgent)
+        private void dataGridImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //Color for Title
+            if (e.ColumnIndex == dataGridImportantNotUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            {
+                // Check the value of CheckBox in the row
+                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantNotUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    // If CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.ColorINU;
+
+                }
+                else
+                {
+                    // In other way use default color
+                    e.CellStyle.ForeColor = dataGridImportantNotUrgent.DefaultCellStyle.ForeColor;
+                }
+
+            }
+        }
+
+
+
+        //Color changing for titles, if checkbox = true (dataGridNotImportantUrgent)
+        private void dataGridNotImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //Color for Title
+            if (e.ColumnIndex == dataGridNotImportantUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            {
+                // Check the value of CheckBox in the row
+                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    // If CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.ColorNIU;
+
+                }
+                else
+                {
+                    // In other way use default color
+                    e.CellStyle.ForeColor = dataGridNotImportantUrgent.DefaultCellStyle.ForeColor;
+                }
+
+            }
+        }
+
+        //Color changing for titles, if checkbox = true (dataGridNotImportantNotUrgent)
+        private void dataGridNotImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            //Color for Title
+            if (e.ColumnIndex == dataGridNotImportantNotUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            {
+                // Check the value of CheckBox in the row
+                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                if (checkBoxCell != null && (bool)checkBoxCell.Value)
+                {
+                    // If CheckBox == true, change the color for column Title and for CheckBox
+                    e.CellStyle.ForeColor = CustomColor.ColorNINU;
+
+                }
+                else
+                {
+                    // In other way use default color
+                    e.CellStyle.ForeColor = dataGridNotImportantNotUrgent.DefaultCellStyle.ForeColor;
+                }
+
+            }
+        }
+
+
 
 
 
@@ -346,6 +599,7 @@ namespace TODO_list
 
         }
 
+
     }
-    
+
 }
