@@ -363,10 +363,22 @@ namespace TODO_list
 
 
 
+        //VERTICAL TEXT
+
+        //Writes vertical text for label lbImportant "tärkeä" 
+        private void lbImportant_Paint(object sender, PaintEventArgs e)
+        {
+            VerticalText(e, "tärkeää");
+        }
+
+        //Writes vertical text for label lbNotImportant "ei tärkeä"
+        private void lbNotImportant_Paint(object sender, PaintEventArgs e)
+        {
+            VerticalText(e, "ei tärkeää");
+        }
 
 
-
-        //VERTICAL TEXT FUNCTION
+        //FUNCTION for vertical text
         private void VerticalText(PaintEventArgs e, string word)
         {
             Font myfont = new Font("Microsoft Sans Serif", 16);
@@ -377,130 +389,55 @@ namespace TODO_list
         }
 
 
-        //Writes vertical text for label lbImportant "tärkeä" 
-        private void lbImportant_Paint(object sender, PaintEventArgs e)
-        {
-            string word = "tärkeää";
-            VerticalText(e, word);
-
-        }
-
-        //Writes vertical text for label lbNotImportant "ei tärkeä"
-        private void lbNotImportant_Paint(object sender, PaintEventArgs e)
-        {
-            string word = "ei tärkeää";
-            VerticalText(e, word);
-        }
 
 
+        //COLOR CHANGING FOR TITLES
 
-
-        //FUNCTIONS: COLOR CHANGING FOR TITLES
-        //Color changing for titles, if checkbox = true (dataGridImportantUrgent)
         private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            //Color for Title
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null && (bool)checkBoxCell.Value)
-                {
-                    // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorIU;
-
-                }
-                else
-                {
-                    // In other way use default color
-                    e.CellStyle.ForeColor = dataGridImportantUrgent.DefaultCellStyle.ForeColor;
-                }
-
-            }
-
+            ChangeTitleColor(e, dataGridImportantUrgent, CustomColor.ColorIU);
         }
 
 
-
-        //Color changing for titles, if checkbox = true (dataGridImportantNotUrgent)
         private void dataGridImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            //Color for Title
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantNotUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null && (bool)checkBoxCell.Value)
-                {
-                    // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorINU;
-
-                }
-                else
-                {
-                    // In other way use default color
-                    e.CellStyle.ForeColor = dataGridImportantNotUrgent.DefaultCellStyle.ForeColor;
-                }
-
-            }
-
+            ChangeTitleColor(e, dataGridImportantNotUrgent, CustomColor.ColorINU);
         }
 
 
-
-        //Color changing for titles, if checkbox = true (dataGridNotImportantUrgent)
         private void dataGridNotImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            //Color for Title
-            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
-            {
-                // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
-                if (checkBoxCell != null && (bool)checkBoxCell.Value)
-                {
-                    // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorNIU;
-
-                }
-                else
-                {
-                    // In other way use default color
-                    e.CellStyle.ForeColor = dataGridNotImportantUrgent.DefaultCellStyle.ForeColor;
-                }
-
-            }
-
+            ChangeTitleColor(e, dataGridNotImportantUrgent, CustomColor.ColorNIU);
         }
 
 
-
-        //Color changing for titles, if checkbox = true (dataGridNotImportantNotUrgent)
         private void dataGridNotImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            ChangeTitleColor(e, dataGridNotImportantNotUrgent, CustomColor.ColorNINU);
+        }
 
-            //Color for Title
+
+
+        //FUNCTION for title color changing
+        private void ChangeTitleColor(DataGridViewCellFormattingEventArgs e, DataGridView dataGridView, Color colorIfChecked)
+        {
             if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
-                // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = dataGridView.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
-                    // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorNINU;
-
+                    e.CellStyle.ForeColor = colorIfChecked;
                 }
                 else
                 {
-                    // In other way use default color
-                    e.CellStyle.ForeColor = dataGridNotImportantNotUrgent.DefaultCellStyle.ForeColor;
+                    e.CellStyle.ForeColor = dataGridView.DefaultCellStyle.ForeColor;
                 }
-
             }
-
         }
+
+
+
+
 
 
 
