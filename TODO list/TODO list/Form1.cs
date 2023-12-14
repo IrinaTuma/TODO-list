@@ -54,8 +54,6 @@ namespace TODO_list
         //ADD
         private void btnRed_Click(object sender, EventArgs e)
         {
-
-
             AddFunction("baseImportantUrgent", "dataGridImportantUrgent");
         }
 
@@ -116,25 +114,6 @@ namespace TODO_list
                 //Clean the text box
                 textBoxTitle.Clear();
 
-
-                //Clean the DataGridView
-                // Find the element DataGridView by its name
-                //DataGridView dataGridView = Controls.Find(dataGridName, true).FirstOrDefault() as DataGridView;
-
-                // If the element DataGridView was found, clean it
-                /*
-                if (dataGridView != null)
-                {
-                    if (dataGridView.InvokeRequired)
-                    {
-                        dataGridView.Invoke(new MethodInvoker(delegate { dataGridView.Rows.Clear(); }));
-                    }
-                    else
-                    {
-                        dataGridView.Rows.Clear();
-                    }
-                }
-                */
 
                 if (dataGridName == "dataGridImportantUrgent")
                 {
@@ -243,242 +222,66 @@ namespace TODO_list
 
         //CHECKBOX
 
-        //dataGridImportantUrgent
         private void dataGridImportantUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
-            if (e.ColumnIndex == dataGridImportantUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
-            {
-                DataGridViewCheckBoxCell cell = dataGridImportantUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
-
-
-
-                // Change CheckBox
-                if (cell != null)
-                {
-                    bool isChecked = !(bool)cell.Value;
-
-                    // logic, when CheckBox changes
-                    // isChecked contains new state of CheckBox (true - chosen, false - not chosen)
-
-                    // Update value CheckBox in Database
-                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
-                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
-                    {
-                        string updateQuery = "UPDATE baseImportantUrgent SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
-                        using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
-                        {
-                            updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
-                            updateCommand.Parameters.AddWithValue("@id", dataGridImportantUrgent.Rows[e.RowIndex].Cells["ID"].Value); // Замените "ID" на ваше поле с ID
-
-                            try
-                            {
-                                dbConnection.Open();
-
-                                Console.WriteLine(updateCommand.ExecuteScalar());
-
-                                int rowsAffected = updateCommand.ExecuteNonQuery();
-
-                                dbConnection.Close();
-
-                                if (rowsAffected == 1)
-                                {
-                                    dataGridImportantUrgent.Rows.Clear(); //Clean the dataGridImportantUrgent
-                                    DatabaseLoad();
-                                    MessageBox.Show("Database updated!", "Success");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No rows updated!", "Error");
-                                }
-
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Database update error: " + ex.Message, "Error");
-                            }
-                        }
-                    }
-                }
-            }
-            */
+            CheckBoxCellClicked(e, dataGridImportantUrgent, "baseImportantUrgent");
         }
 
-        //dataGridImportantNotUrgent
+
         private void dataGridImportantNotUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
-            if (e.ColumnIndex == dataGridImportantNotUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
-            {
-                DataGridViewCheckBoxCell cell = dataGridImportantNotUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
-
-
-
-                // Change CheckBox
-                if (cell != null)
-                {
-                    bool isChecked = !(bool)cell.Value;
-
-                    // logic, when CheckBox changes
-                    // isChecked contains new state of CheckBox (true - chosen, false - not chosen)
-
-                    // Update value CheckBox in Database
-                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
-                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
-                    {
-                        string updateQuery = "UPDATE baseImportantNotUrgent SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
-                        using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
-                        {
-                            updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
-                            updateCommand.Parameters.AddWithValue("@id", dataGridImportantNotUrgent.Rows[e.RowIndex].Cells["ID"].Value); // Замените "ID" на ваше поле с ID
-
-                            try
-                            {
-                                dbConnection.Open();
-
-                                Console.WriteLine(updateCommand.ExecuteScalar());
-
-                                int rowsAffected = updateCommand.ExecuteNonQuery();
-
-                                dbConnection.Close();
-
-                                if (rowsAffected == 1)
-                                {
-                                    dataGridImportantNotUrgent.Rows.Clear(); //Clean the dataGridImportantNotUrgent
-                                    DatabaseLoad();
-                                    MessageBox.Show("Database updated!", "Success");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No rows updated!", "Error");
-                                }
-
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Database update error: " + ex.Message, "Error");
-                            }
-                        }
-                    }
-                }
-            }
-            */
+            CheckBoxCellClicked(e, dataGridImportantNotUrgent, "baseImportantNotUrgent");
         }
 
-        //dataGridNotImportantUrgent
+
         private void dataGridNotImportantUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
-            if (e.ColumnIndex == dataGridNotImportantUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
-            {
-                DataGridViewCheckBoxCell cell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
-
-
-
-                // Change CheckBox
-                if (cell != null)
-                {
-                    bool isChecked = !(bool)cell.Value;
-
-                    // logic, when CheckBox changes
-                    // isChecked contains new state of CheckBox (true - chosen, false - not chosen)
-
-                    // Update value CheckBox in Database
-                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
-                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
-                    {
-                        string updateQuery = "UPDATE baseNotImportantUrgent SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
-                        using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
-                        {
-                            updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
-                            updateCommand.Parameters.AddWithValue("@id", dataGridNotImportantUrgent.Rows[e.RowIndex].Cells["ID"].Value); // Замените "ID" на ваше поле с ID
-
-                            try
-                            {
-                                dbConnection.Open();
-
-                                Console.WriteLine(updateCommand.ExecuteScalar());
-
-                                int rowsAffected = updateCommand.ExecuteNonQuery();
-
-                                dbConnection.Close();
-
-                                if (rowsAffected == 1)
-                                {
-                                    dataGridNotImportantUrgent.Rows.Clear(); //Clean the dataGridNotImportantUrgent
-                                    DatabaseLoad();
-                                    MessageBox.Show("Database updated!", "Success");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No rows updated!", "Error");
-                                }
-
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Database update error: " + ex.Message, "Error");
-                            }
-                        }
-                    }
-                }
-            }
-            */
+            CheckBoxCellClicked(e, dataGridNotImportantUrgent, "baseNotImportantUrgent");
         }
 
-        //dataGridNotImportantNotUrgent
+
         private void dataGridNotImportantNotUrgent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
-            if (e.ColumnIndex == dataGridNotImportantNotUrgent.Columns["checkDone"].Index && e.RowIndex >= 0)
+            CheckBoxCellClicked(e, dataGridNotImportantNotUrgent, "baseNotImportantNotUrgent");
+        }
+
+
+        //FUNCTION for Checkboxes
+        private void CheckBoxCellClicked(DataGridViewCellEventArgs e, DataGridView dataGridView, string tableName)
+        {
+            if (e.ColumnIndex == 2 && e.RowIndex >= 0)
             {
-                DataGridViewCheckBoxCell cell = dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell cell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
 
-
-
-                // Change CheckBox
                 if (cell != null)
                 {
                     bool isChecked = !(bool)cell.Value;
 
-                    // logic, when CheckBox changes
-                    // isChecked contains new state of CheckBox (true - chosen, false - not chosen)
-
-                    // Update value CheckBox in Database
                     string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
                     using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
                     {
-                        string updateQuery = "UPDATE baseNotImportantNotUrgent SET [Check] = (@isChecked) WHERE ID = (@id)"; // Замените CheckBoxColumn на ваше поле с CheckBox
+                        string updateQuery = $"UPDATE {tableName} SET [Check] = (@isChecked) WHERE ID = (@id)";
                         using (OleDbCommand updateCommand = new OleDbCommand(updateQuery, dbConnection))
                         {
                             updateCommand.Parameters.AddWithValue("@isChecked", isChecked);
-                            updateCommand.Parameters.AddWithValue("@id", dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells["ID"].Value); // Замените "ID" на ваше поле с ID
+                            updateCommand.Parameters.AddWithValue("@id", dataGridView.Rows[e.RowIndex].Cells[0].Value);
 
                             try
                             {
                                 dbConnection.Open();
-
-                                Console.WriteLine(updateCommand.ExecuteScalar());
-
                                 int rowsAffected = updateCommand.ExecuteNonQuery();
-
                                 dbConnection.Close();
 
                                 if (rowsAffected == 1)
                                 {
-                                    dataGridNotImportantNotUrgent.Rows.Clear(); //Clean the dataGridNotImportantNotUrgent
-                                    DatabaseLoad();
+                                    dataGridView.Rows.Clear();
+                                    TableLoad(tableName, dataGridView.Name);
                                     MessageBox.Show("Database updated!", "Success");
                                 }
                                 else
                                 {
                                     MessageBox.Show("No rows updated!", "Error");
                                 }
-
-
                             }
                             catch (Exception ex)
                             {
@@ -488,8 +291,13 @@ namespace TODO_list
                     }
                 }
             }
-            */
         }
+
+
+
+
+
+
 
 
 
@@ -531,28 +339,28 @@ namespace TODO_list
                             {
 
                                 dataGridImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
-                                //dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting);
+                                dataGridImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
                                 dataGridImportantUrgent.ClearSelection();
                             }
                             else if (dataGridName == "dataGridNotImportantUrgent")
                             {
 
                                 dataGridNotImportantUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
-                                //dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantUrgent_CellFormatting);
+                                dataGridNotImportantUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
                                 dataGridNotImportantUrgent.ClearSelection();
                             }
                             else if (dataGridName == "dataGridImportantNotUrgent")
                             {
 
                                 dataGridImportantNotUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
-                                //dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantNotUrgent_CellFormatting);
+                                dataGridImportantNotUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridImportantNotUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
                                 dataGridImportantNotUrgent.ClearSelection();
                             }
                             else if (dataGridName == "dataGridNotImportantNotUrgent")
                             {
 
                                 dataGridNotImportantNotUrgent.Rows.Add(dbReader["ID"], dbReader["Title"], dbReader["Check"]); //Add Data from Database in DataGridView
-                                //dataGridView.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantNotUrgent_CellFormatting);
+                                dataGridNotImportantNotUrgent.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridNotImportantNotUrgent_CellFormatting); //this function changes the color for titles with checkbox = true
                                 dataGridNotImportantNotUrgent.ClearSelection();
                             }
 
@@ -616,12 +424,12 @@ namespace TODO_list
         //Color changing for titles, if checkbox = true (dataGridImportantUrgent)
         private void dataGridImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*
+            
             //Color for Title
-            if (e.ColumnIndex == dataGridImportantUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = dataGridImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
                     // If CheckBox == true, change the color for column Title and for CheckBox
@@ -635,18 +443,18 @@ namespace TODO_list
                 }
 
             }
-            */
+            
         }
 
         //Color changing for titles, if checkbox = true (dataGridNotImportantUrgent)
         private void dataGridNotImportantUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*
+            
             //Color for Title
-            if (e.ColumnIndex == dataGridNotImportantUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
                     // If CheckBox == true, change the color for column Title and for CheckBox
@@ -660,22 +468,22 @@ namespace TODO_list
                 }
 
             }
-            */
+            
         }
 
         //Color changing for titles, if checkbox = true (dataGridImportantNotUrgent)
         private void dataGridImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*
+            
             //Color for Title
-            if (e.ColumnIndex == dataGridNotImportantUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
                     // If CheckBox == true, change the color for column Title and for CheckBox
-                    e.CellStyle.ForeColor = CustomColor.ColorNIU;
+                    e.CellStyle.ForeColor = CustomColor.ColorINU;
 
                 }
                 else
@@ -685,18 +493,18 @@ namespace TODO_list
                 }
 
             }
-            */
+            
         }
 
         //Color changing for titles, if checkbox = true (dataGridNotImportantNotUrgent)
         private void dataGridNotImportantNotUrgent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*
+            
             //Color for Title
-            if (e.ColumnIndex == dataGridNotImportantNotUrgent.Columns["Title"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 // Check the value of CheckBox in the row
-                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells["checkDone"] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = dataGridNotImportantNotUrgent.Rows[e.RowIndex].Cells[2] as DataGridViewCheckBoxCell;
                 if (checkBoxCell != null && (bool)checkBoxCell.Value)
                 {
                     // If CheckBox == true, change the color for column Title and for CheckBox
@@ -710,7 +518,7 @@ namespace TODO_list
                 }
 
             }
-            */
+            
         }
 
 

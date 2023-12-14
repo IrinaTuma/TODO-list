@@ -22,11 +22,11 @@ namespace TODO_list
         public static System.Drawing.Color ColorINUDefault = SystemColors.Control;
 
         //dataGridNotImportantUrgent
-        public static System.Drawing.Color ColorNIU = System.Drawing.Color.FromArgb(250, 220, 184);
+        public static System.Drawing.Color ColorNIU = System.Drawing.Color.FromArgb(247, 218, 183);
         public static System.Drawing.Color ColorNIUDefault = SystemColors.Control;
 
         //dataGridNotImportantNotUrgent
-        public static System.Drawing.Color ColorNINU = System.Drawing.Color.FromArgb(190, 184, 228);
+        public static System.Drawing.Color ColorNINU = System.Drawing.Color.FromArgb(184, 177, 230);
         public static System.Drawing.Color ColorNINUDefault = SystemColors.Control;
 
 
