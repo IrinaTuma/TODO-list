@@ -69,9 +69,9 @@
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkDone = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnRed = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGreen = new System.Windows.Forms.Button();
+            this.btnOrange = new System.Windows.Forms.Button();
+            this.btnBlue = new System.Windows.Forms.Button();
             this.dataGridNotImportantUrgent = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -301,45 +301,45 @@
             this.btnRed.TabIndex = 17;
             this.btnRed.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnGreen
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkCyan;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSlateGray;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(748, 642);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(46, 49);
-            this.button1.TabIndex = 18;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnGreen.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnGreen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnGreen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGreen.ForeColor = System.Drawing.Color.Transparent;
+            this.btnGreen.Location = new System.Drawing.Point(748, 642);
+            this.btnGreen.Name = "btnGreen";
+            this.btnGreen.Size = new System.Drawing.Size(46, 49);
+            this.btnGreen.TabIndex = 18;
+            this.btnGreen.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnOrange
             // 
-            this.button2.BackColor = System.Drawing.Color.DarkOrange;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Sienna;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(810, 642);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(46, 49);
-            this.button2.TabIndex = 19;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnOrange.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOrange.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Sienna;
+            this.btnOrange.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnOrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrange.ForeColor = System.Drawing.Color.Transparent;
+            this.btnOrange.Location = new System.Drawing.Point(810, 642);
+            this.btnOrange.Name = "btnOrange";
+            this.btnOrange.Size = new System.Drawing.Size(46, 49);
+            this.btnOrange.TabIndex = 19;
+            this.btnOrange.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnBlue
             // 
-            this.button3.BackColor = System.Drawing.Color.SlateBlue;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSlateBlue;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(872, 642);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(46, 49);
-            this.button3.TabIndex = 20;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnBlue.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnBlue.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnBlue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnBlue.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnBlue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBlue.ForeColor = System.Drawing.Color.Transparent;
+            this.btnBlue.Location = new System.Drawing.Point(872, 642);
+            this.btnBlue.Name = "btnBlue";
+            this.btnBlue.Size = new System.Drawing.Size(46, 49);
+            this.btnBlue.TabIndex = 20;
+            this.btnBlue.UseVisualStyleBackColor = false;
             // 
             // dataGridNotImportantUrgent
             // 
@@ -677,9 +677,9 @@
             this.Controls.Add(this.dataGridNotImportantNotUrgent);
             this.Controls.Add(this.dataGridImportantNotUrgent);
             this.Controls.Add(this.dataGridNotImportantUrgent);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBlue);
+            this.Controls.Add(this.btnOrange);
+            this.Controls.Add(this.btnGreen);
             this.Controls.Add(this.btnRed);
             this.Controls.Add(this.dataGridImportantUrgent);
             this.Controls.Add(this.btnAdd);
@@ -714,9 +714,9 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dataGridImportantUrgent;
         private System.Windows.Forms.Button btnRed;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnGreen;
+        private System.Windows.Forms.Button btnOrange;
+        private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkDone;

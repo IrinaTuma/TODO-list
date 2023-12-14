@@ -134,6 +134,8 @@ namespace TODO_list
                                 {
                                     MessageBox.Show("No data deleted", "Attention");
                                 }
+
+                                dataGridImportantUrgent.ClearSelection();
                             }
                             catch (Exception ex)
                             {
@@ -261,6 +263,7 @@ namespace TODO_list
                     //Close the connection
                     dbReader.Close();
                     dbConnection.Close();
+                    dataGridImportantUrgent.ClearSelection();
                 }
                 catch (Exception ex)
                 {
