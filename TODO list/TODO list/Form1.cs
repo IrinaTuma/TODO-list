@@ -440,26 +440,30 @@ namespace TODO_list
 
 
 
-        //SELECTION AN ENTIRE LINE
+        //SELECTION AN ENTIRE LINE AND LINESELECTION ONLY IN ONE DATA GRID VIEW
 
         private void dataGridImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineSelection(e, dataGridImportantUrgent);
+            DeselectRowsInOtherDataGridView(dataGridImportantUrgent, dataGridImportantNotUrgent, dataGridNotImportantUrgent, dataGridNotImportantNotUrgent);
         }
 
         private void dataGridImportantNotUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineSelection(e, dataGridImportantNotUrgent);
+            DeselectRowsInOtherDataGridView(dataGridImportantNotUrgent, dataGridImportantUrgent,dataGridNotImportantUrgent, dataGridNotImportantNotUrgent);
         }
 
         private void dataGridNotImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineSelection(e, dataGridNotImportantUrgent);
+            DeselectRowsInOtherDataGridView(dataGridNotImportantUrgent, dataGridImportantNotUrgent, dataGridImportantUrgent, dataGridNotImportantNotUrgent);
         }
 
         private void dataGridNotImportantNotUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineSelection(e, dataGridNotImportantNotUrgent);
+            DeselectRowsInOtherDataGridView(dataGridNotImportantNotUrgent, dataGridNotImportantUrgent, dataGridImportantNotUrgent, dataGridImportantUrgent);
         }
 
 
@@ -478,6 +482,28 @@ namespace TODO_list
 
                 //Select the entry line clicked on
                 dataGridView.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+
+
+        //FUNCTIONS for line selection only in one GridView
+
+        private void DeselectRowsInOtherDataGridView(DataGridView currentDataGridView, params DataGridView[] otherDataGridViews) //params DataGridView[] creates some objects of one type
+        {
+            foreach (var otherDataGridView in otherDataGridViews)
+            {
+                if (otherDataGridView != null && otherDataGridView.CurrentRow != null &&
+                    otherDataGridView.CurrentRow.Selected)
+                {
+                    otherDataGridView.CurrentRow.Selected = false;
+                }
+            }
+
+            if (currentDataGridView != null && currentDataGridView.CurrentRow != null &&
+                !currentDataGridView.CurrentRow.Selected)
+            {
+                currentDataGridView.CurrentRow.Selected = true;
             }
         }
 
