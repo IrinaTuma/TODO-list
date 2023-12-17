@@ -82,7 +82,7 @@ namespace TODO_list
             // Check that Text Box is not empty and not longer that 50 symbols
             if (string.IsNullOrWhiteSpace(textBoxTitle.Text) || textBoxTitle.Text.Length > textBoxTitle.MaxLength)
             {
-                MessageBox.Show("Enter data in the TextBox up to 55 characters!", "Attention");
+                MessageBox.Show("Kirjoita tietoja tekstilaatikkoon enintään 55 merkkiä!", "Huomio"); //Message: Enter data in the TextBox up to 55 characters!
                 return;
             }
 
@@ -118,13 +118,12 @@ namespace TODO_list
                 dataGridView.Rows.Clear();
                 TableLoad(dataGridView, databaseTable);//Load DataBase
 
-
-
-                MessageBox.Show("Data was added", "Attention");
+                //Test message:
+                //MessageBox.Show("Data was added", "Attention");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                MessageBox.Show("Kyselyn virhe: " + ex.Message, "Virhe!"); //Message: "Mistake of the query: "
             }
 
         }
@@ -158,7 +157,7 @@ namespace TODO_list
             }
             else
             {
-                MessageBox.Show("Select rows to delete", "Attention");
+                MessageBox.Show("Valitse poistettavat rivit", "Huomio"); //Message: Select rows to delete
             }
 
         }
@@ -174,7 +173,6 @@ namespace TODO_list
             {
 
                 // Recieve the data from the cell
-                //string title = row.Cells["title"].Value.ToString();
                 string title = row.Cells[1].Value.ToString();
 
                 // Create the connection with DataBase
@@ -196,18 +194,18 @@ namespace TODO_list
                             {
                                 // Delete the string from DataGridView
                                 dataGridView.Rows.Remove(row);
-                                MessageBox.Show("Selected rows deleted", "Success");
+                                MessageBox.Show("Valitut rivit poistettu", "Menestys"); //Message: Select rows to delete
                             }
                             else
                             {
-                                MessageBox.Show("No data deleted", "Attention");
+                                MessageBox.Show("Tietoja ei poisteta", "Huomio"); //Message: No data deleted
                             }
 
                             dataGridView.ClearSelection();
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                            MessageBox.Show("Kyselyn virhe: " + ex.Message, "Virhe!"); //Message: "Mistake of the query: "
                         }
                     }
                 }
@@ -274,16 +272,18 @@ namespace TODO_list
                                 {
                                     dataGridView.Rows.Clear();
                                     TableLoad(dataGridView, tableName);
-                                    MessageBox.Show("Database updated!", "Success");
+
+                                    //Test message
+                                    //MessageBox.Show("Database updated!", "Success");
                                 }
                                 else
                                 {
-                                    MessageBox.Show("No rows updated!", "Error");
+                                    MessageBox.Show("Ei päivitettyjä rivejä!", "Virhe"); //Message: No rows updated!
                                 }
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Database update error: " + ex.Message, "Error");
+                                MessageBox.Show("Tietokannan päivitysvirhe: " + ex.Message, "Virhe"); //Message: "Database update error: "
                             }
                         }
                     }
@@ -315,7 +315,7 @@ namespace TODO_list
         //FUNCTION: Loading of Database and sorting it by "Check" column
         private void TableLoad(DataGridView dataGridView, string databaseTable)
         {
-            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";  //String for connection
+            string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb"; //String for connection
             string query = "SELECT * FROM " + databaseTable + " ORDER BY IIF(Check = true, 1, 0)"; //string of query with sorting by "Check"
 
             using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
@@ -363,7 +363,7 @@ namespace TODO_list
                     }
                     else
                     {
-                        MessageBox.Show("Data wasn't found!", "Mistake");
+                        MessageBox.Show("Tietoja ei löytynyt!", "Virhe"); //Message: "Data wasn't found!"
                     }
 
                     //Close the connection
@@ -373,7 +373,7 @@ namespace TODO_list
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                    MessageBox.Show("Kyselyn virhe: " + ex.Message, "Virhe"); //Message: "Mistake of the query: "
                 }
 
             }
