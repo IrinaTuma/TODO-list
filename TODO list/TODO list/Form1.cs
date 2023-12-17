@@ -192,16 +192,26 @@ namespace TODO_list
 
                             if (rowsAffected > 0)
                             {
-                                // Delete the string from DataGridView
-                                dataGridView.Rows.Remove(row);
-                                MessageBox.Show("Valitut rivit poistettu", "Menestys"); //Message: Select rows to delete
+
+                                if (dataGridView.SelectedRows.Count == 1)
+                                {
+                                    // Delete the string from DataGridView
+                                    dataGridView.Rows.Remove(row);
+                                    dataGridView.ClearSelection();
+                                    MessageBox.Show("Valitut rivit poistettu", "Menestys"); //Message: Select rows to delete
+                                }
+                                else
+                                {
+                                    // Delete the string from DataGridView
+                                    dataGridView.Rows.Remove(row);
+                                }
+
                             }
                             else
                             {
                                 MessageBox.Show("Tietoja ei poisteta", "Huomio"); //Message: No data deleted
                             }
 
-                            dataGridView.ClearSelection();
                         }
                         catch (Exception ex)
                         {
@@ -361,10 +371,14 @@ namespace TODO_list
 
                         }
                     }
+
+                    //test message
+                    /*
                     else
                     {
                         MessageBox.Show("Tietoja ei löytynyt!", "Virhe"); //Message: "Data wasn't found!"
                     }
+                    */
 
                     //Close the connection
                     dbReader.Close();
