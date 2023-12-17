@@ -133,66 +133,85 @@ namespace TODO_list
 
 
 
-
-
-
         //DELETE
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
-            // Check that the row exists
             if (dataGridImportantUrgent.SelectedRows.Count > 0)
             {
+                DeleteFunction(dataGridImportantUrgent, "baseImportantUrgent");
 
-                // To do the same for each chosen row
-                foreach (DataGridViewRow row in dataGridImportantUrgent.SelectedRows)
-                {
+            }
+            else if (dataGridImportantNotUrgent.SelectedRows.Count > 0)
+            {
+                DeleteFunction(dataGridImportantNotUrgent, "baseImportantNotUrgent");
 
-                    // Recieve the data from the cell
-                    string title = row.Cells["title"].Value.ToString();
+            }
+            else if (dataGridNotImportantUrgent.SelectedRows.Count > 0)
+            {
+                DeleteFunction(dataGridNotImportantUrgent, "baseNotImportantUrgent");
 
-                    // Create the connection with DataBase
-                    string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
-                    using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
-                    {
-                        string query = "DELETE FROM baseImportantUrgent WHERE Title = @title"; // query of deletion
-                        using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
-                        {
-                            dbCommand.Parameters.AddWithValue("@title", title);
-
-                            try
-                            {
-                                dbConnection.Open();
-                                int rowsAffected = dbCommand.ExecuteNonQuery();
-                                dbConnection.Close();
-
-                                if (rowsAffected > 0)
-                                {
-                                    // Delete the string from DataGridView
-                                    dataGridImportantUrgent.Rows.Remove(row);
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No data deleted", "Attention");
-                                }
-
-                                dataGridImportantUrgent.ClearSelection();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
-                            }
-                        }
-                    }
-                }
-
-                MessageBox.Show("Selected rows deleted", "Success");
+            }
+            else if (dataGridNotImportantNotUrgent.SelectedRows.Count > 0)
+            {
+                DeleteFunction(dataGridNotImportantNotUrgent, "baseNotImportantNotUrgent");
             }
             else
             {
                 MessageBox.Show("Select rows to delete", "Attention");
             }
 
+        }
+
+
+        //FUNCTION for deletion
+
+        private void DeleteFunction(DataGridView dataGridView, string baseName)
+        {
+
+            // To do the same for each chosen row
+            foreach (DataGridViewRow row in dataGridView.SelectedRows)
+            {
+
+                // Recieve the data from the cell
+                //string title = row.Cells["title"].Value.ToString();
+                string title = row.Cells[1].Value.ToString();
+
+                // Create the connection with DataBase
+                string connectionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=Database.mdb";
+                using (OleDbConnection dbConnection = new OleDbConnection(connectionString))
+                {
+                    string query = "DELETE FROM " + baseName + " WHERE Title = @title"; // query of deletion
+                    using (OleDbCommand dbCommand = new OleDbCommand(query, dbConnection))
+                    {
+                        dbCommand.Parameters.AddWithValue("@title", title);
+
+                        try
+                        {
+                            dbConnection.Open();
+                            int rowsAffected = dbCommand.ExecuteNonQuery();
+                            dbConnection.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                // Delete the string from DataGridView
+                                dataGridView.Rows.Remove(row);
+                                MessageBox.Show("Selected rows deleted", "Success");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No data deleted", "Attention");
+                            }
+
+                            dataGridView.ClearSelection();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Mistake of the query: " + ex.Message, "Mistake!");
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -451,7 +470,7 @@ namespace TODO_list
         private void dataGridImportantNotUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             LineSelection(e, dataGridImportantNotUrgent);
-            DeselectRowsInOtherDataGridView(dataGridImportantNotUrgent, dataGridImportantUrgent,dataGridNotImportantUrgent, dataGridNotImportantNotUrgent);
+            DeselectRowsInOtherDataGridView(dataGridImportantNotUrgent, dataGridImportantUrgent, dataGridNotImportantUrgent, dataGridNotImportantNotUrgent);
         }
 
         private void dataGridNotImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -468,7 +487,7 @@ namespace TODO_list
 
 
 
-        //FUNCTIONS for selecting an entire line
+        //FUNCTION for selecting an entire line
 
         private void LineSelection(DataGridViewCellEventArgs e, DataGridView dataGridView)
         {
@@ -487,7 +506,7 @@ namespace TODO_list
 
 
 
-        //FUNCTIONS for line selection only in one GridView
+        //FUNCTION for line selection only in one GridView
 
         private void DeselectRowsInOtherDataGridView(DataGridView currentDataGridView, params DataGridView[] otherDataGridViews) //params DataGridView[] creates some objects of one type
         {
