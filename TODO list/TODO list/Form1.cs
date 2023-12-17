@@ -440,69 +440,48 @@ namespace TODO_list
 
 
 
+        //SELECTION AN ENTIRE LINE
 
-
-
-        //FUNCTIONS: Selecting an entire line
         private void dataGridImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                //Deselect the previous line
-                if (dataGridImportantUrgent.CurrentRow != null)
-                {
-                    dataGridImportantUrgent.CurrentRow.Selected = false;
-                }
-
-                //Select the entry line clicked on
-                dataGridImportantUrgent.Rows[e.RowIndex].Selected = true;
-            }
+            LineSelection(e, dataGridImportantUrgent);
         }
 
         private void dataGridImportantNotUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                //Deselect the previous line
-                if (dataGridImportantNotUrgent.CurrentRow != null)
-                {
-                    dataGridImportantNotUrgent.CurrentRow.Selected = false;
-                }
-
-                //Select the entry line clicked on
-                dataGridImportantNotUrgent.Rows[e.RowIndex].Selected = true;
-            }
+            LineSelection(e, dataGridImportantNotUrgent);
         }
 
         private void dataGridNotImportantUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                //Deselect the previous line
-                if (dataGridNotImportantUrgent.CurrentRow != null)
-                {
-                    dataGridNotImportantUrgent.CurrentRow.Selected = false;
-                }
-
-                //Select the entry line clicked on
-                dataGridNotImportantUrgent.Rows[e.RowIndex].Selected = true;
-            }
+            LineSelection(e, dataGridNotImportantUrgent);
         }
 
         private void dataGridNotImportantNotUrgent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            LineSelection(e, dataGridNotImportantNotUrgent);
+        }
+
+
+
+        //FUNCTIONS for selecting an entire line
+
+        private void LineSelection(DataGridViewCellEventArgs e, DataGridView dataGridView)
+        {
             if (e.RowIndex >= 0)
             {
                 //Deselect the previous line
-                if (dataGridNotImportantNotUrgent.CurrentRow != null)
+                if (dataGridView.CurrentRow != null)
                 {
-                    dataGridNotImportantNotUrgent.CurrentRow.Selected = false;
+                    dataGridView.CurrentRow.Selected = false;
                 }
 
                 //Select the entry line clicked on
-                dataGridNotImportantNotUrgent.Rows[e.RowIndex].Selected = true;
+                dataGridView.Rows[e.RowIndex].Selected = true;
             }
         }
+
+
     }
 
 }
