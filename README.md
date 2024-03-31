@@ -1,5 +1,5 @@
-# EN in English
->**FI** Finnish version is [here](#finnish)
+# Description
+>Suomeksi on [täällä](#finnish)
 
 ## Explanation of how the application works and what it is used for
 
@@ -392,7 +392,7 @@ private void CheckBoxCellClicked(DataGridViewCellEventArgs e, DataGridView dataG
 
 <br>
 
-# <a id="finnish">FI in Finnish (Suomeksi)</a>
+# <a id="finnish">In Finnish (Suomeksi)</a>
 ## Sovelluksen toimintaperiaatteen ja käyttötarkoituksen selitys
 
 Sovellus on tehtäväluettelo, joka on jaettu neljään ryhmään Eisenhowerin matriisin mukaisesti (aikanhallintamenetelmä, joka auttaa priorisoimaan tehtäviä: tärkeiden asioiden tekeminen ja ajan tuhlaamisen välttäminen tarpeettomiin asioihin).
